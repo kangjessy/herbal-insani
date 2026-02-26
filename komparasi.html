@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komparasi Layout Website: Herbal Insani (Homepage)</title>
+    <style>
+        :root {
+            --green: #2b7a0b;
+            --red: #d32f2f;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f4f7f6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            font-size: 1.1em;
+            color: #666;
+        }
+        .section-block {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .section-header {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #222;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .card {
+            padding: 24px;
+            border-radius: 8px;
+        }
+        .card.lama {
+            background-color: #fffaf9;
+            border: 1px solid #ffebe6;
+        }
+        .card.baru {
+            background-color: #f6fcf7;
+            border: 1px solid #e2f1e4;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge.lama {
+            background-color: var(--red);
+            color: white;
+        }
+        .badge.baru {
+            background-color: var(--green);
+            color: white;
+        }
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #eaeaea;
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* TABS SYSTEM */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            background: rgba(244, 247, 246, 0.9);
+            padding: 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            background: #fff;
+            color: #666;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .tab-btn:hover {
+            background: #f0f0f0;
+        }
+        .tab-btn.active {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 4px 10px rgba(43, 122, 11, 0.3);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Komparasi Visual Website</h1>
+        <p class="subtitle">Transformasi Taman Wisata Herbal Insani</p>
+    </header>
+
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="openTab('homepage')">Halaman Depan</button>
+        <button class="tab-btn" onclick="openTab('about')">Tentang Kami</button>
+        <button class="tab-btn" onclick="openTab('galeri')">Galeri</button>
+        <button class="tab-btn" onclick="openTab('herbal')">Katalog Herbal</button>
+        <button class="tab-btn" onclick="openTab('paket')">Paket Wisata</button>
+        <button class="tab-btn" onclick="openTab('kontak')">Kontak & Lokasi</button>
+    </div>
+
+    <!-- TAB: HOMEPAGE -->
+    <div id="homepage" class="tab-content active">
+
+    <!-- SECTION 1: Navigasi & Hero -->
+    <div class="section-block">
+        <div class="section-header">1. Header & Hero Section (Kesan Pertama)</div>
+        <div class="compare-grid">
+            <div class="card lama">
+                <span class="badge lama">Desain Lama</span>
+                <img src="images/hero_lama_komparasi.png" alt="Hero Web Lama" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Kondisi Sebelumnya:</strong></p>
+                <ul>
+                    <li>Navigasi (*header*) berupa balok letak atas putih solid yang sangat kaku, logo tidak berbentuk, dan teks menu kurang mencolok.</li>
+                    <li>Foto latar belakang (*hero image*) dibiarkan mentah, *flat*, tanpa ada perlakuan warna / *overlay* sama sekali.</li>
+                    <li><strong>Tidak ada judul, tidak ada teks, dan tidak ada tombol ajakan sama sekali!</strong> Pengunjung dibiarkan masuk rumah tanpa disambut dan bingung harus melakukan apa.</li>
+                </ul>
+            </div>
+            <div class="card baru">
+                <span class="badge baru">Desain Baru</span>
+                <img src="images/hero_baru_komparasi.png" alt="Hero Web Baru" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Pemecahan Masalah (After):</strong></p>
+                <ul>
+                    <li><strong>Desain Immersive:</strong> Navigasi transparan bergaya kekinian yang seakan menyatu dengan gambar pemandangan di baliknya.</li>
+                    <li><strong>Visual Dramatis:</strong> Penambahan *dark overlay mode* pada foto latar sehingga menonjolkan nuansa prestise, premium, dan sangat "hidup".</li>
+                    <li><strong>Copywriting Bertaring:</strong> Hadirnya *Headline* (Judul Utama) besar yang membawa pesan inti *"Menghidupkan Warisan...*", disusul langsung oleh dua buah Tombol Kontras ganda (CTA) warna hijau & putih agar audiens langsung terarah untuk beli tiket atau tonton video.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: Statistik & Keunggulan -->
+    <div class="section-block">
+        <div class="section-header">2. Quick Stats & Mengapa Memilih Kami</div>
+        <div class="compare-grid">
+            <div class="card lama">
+                <span class="badge lama">Desain Lama</span>
+                <img src="images/stats_lama_1.png" alt="Welcome Text Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd;">
+                <img src="images/stats_lama_2.png" alt="Why Us Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Kondisi Sebelumnya:</strong></p>
+                <ul>
+                    <li><strong>Wall of Text:</strong> Blok "Selamat Datang" dan "Mengapa Kami" hanya berisi tumpukan paragraf panjang (dinding teks) yang sangat membosankan dan dijamin akan di-*skip* kursor oleh pembaca.</li>
+                    <li><strong>Mubazir Spasi:</strong> Banyak sekali ruang kosong *(white space)* putih yang tidak didesain dengan baik, membuat *layout* terasa gersang dan amatir.</li>
+                    <li>Penyampaian harga sarana bermain hanya disajikan layaknya *bullet text* hyperlink biru mentah (menyerupai link rusak/MS Word).</li>
+                </ul>
+            </div>
+            <div class="card baru">
+                <span class="badge baru">Desain Baru</span>
+                <img src="images/stats_baru_1.png" alt="Quick Stats Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <img src="images/stats_baru_2.png" alt="Bento Grid Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Pemecahan Masalah (After):</strong></p>
+                <ul>
+                    <li><strong>Floating Stats (Ikonik):</strong> Info esensial (seperti "Pusat TOGA", dan "Buka Setiap Hari") disajikan di dalam tabung kartu statistik melayang (*floating*) bersudut bulat dengan ikon yang memanjakan mata yang cepat dicerna dalam 3 detik.</li>
+                    <li><strong>Grid Bento Premium:</strong> Paragraf "Mengapa Kami" dirangkum ulang (*rewriting*) menjadi kartu *(Bento Grid)* yang menyatukan latar foto aktivitas asri dengan balok-balok fitur solid putih. </li>
+                    <li>Tidak ada lagi paragraf membosankan; setiap informasi kini ditemani ilustrasi ikonografi hijau solid yang menegaskan standar ekowisata modern.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: Aktivitas & Promo -->
+    <div class="section-block">
+        <div class="section-header">3. Aktivitas Pilihan & Spanduk Promo</div>
+        <div class="compare-grid">
+            <div class="card lama">
+                <span class="badge lama">Desain Lama</span>
+                <img src="images/aktivitas_lama_1.png" alt="Aktivitas Teks Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd;">
+                <img src="images/aktivitas_lama_2.png" alt="Galeri Grid Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Kondisi Sebelumnya:</strong></p>
+                <ul>
+                    <li><strong>Layout Berantakan:</strong> Susunan gambar kegiatan (*gallery grid*) yang ditaruh asal-asalan, memiliki rasio dan proporsi yang timpang satu sama lain, sehingga merusak kerapian mata memandang.</li>
+                    <li>Sangat pelit ruang putih; terlihat penuh sesak tanpa adanya struktur *margin* batas yang konsisten. Keterangan teks (*caption*) di bawah gambar pun terlihat terlalu kecil dan susah dibaca.</li>
+                    <li>Tidak ada titik fokus penjualan promosi sama sekali di dalam halaman tersebut yang menarik rombongan untuk membeli tiket sekunder.</li>
+                </ul>
+            </div>
+            <div class="card baru">
+                <span class="badge baru">Desain Baru</span>
+                <img src="images/aktivitas_baru_1.png" alt="Aktivitas Cards Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <img src="images/aktivitas_baru_2.png" alt="Promo Banner Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <img src="images/aktivitas_baru_3.png" alt="Fasilitas Ikon Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <p><strong>Pemecahan Masalah (After):</strong></p>
+                <ul>
+                    <li><strong>Kartu Aktivitas Mewah:</strong> Merombak grid berantakan menjadi *Card* (Kartu) identik berukuran proporsional yang mengagumkan layaknya platform agregator hotel, dihiasi efek pembesaran gambar (*zoom hover effect*) yang interaktif.</li>
+                    <li>Setiap aktivitas memiliki penutup *copywriting* *(Edukasi Herbal Nusantara, Arena Panahan...)* diiringi kalimat deskriptif singkat penambah nafsu beli.</li>
+                    <li><strong>Spanduk Promo Atraktif (*Break-out Banner*):</strong> Hadirnya penawaran "Rombongan Sekolah -20%" di atas balok hijau kontras kuat dengan aksen lencana oval emas yang menembus kotak, secara psikologis sangat ampuh menangkap "perhatian paksa" di ujung *scroll* penjelajahan audiens, memandu langsung masuk ke halaman Paket.</li>
+                    <li><strong>Ikon Fasilitas Minimalis:</strong> Langsung di bawah promo, daftar Fasilitas (Musholla, Parkir, Kantin, Toilet) diringkas bentuknya menjadi kotak-kotak minimalis bergaris bentuk *(line-icons)* modern supaya tidak memenuhi sesak area membaca seperti web versi tua. Mata pengguna dapat "memindai" layanan ini kurang dari sedetik.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: Bukti Sosial (Testimoni) -->
+    <div class="section-block">
+        <div class="section-header">4. Testimoni (Bukti Sosial)</div>
+        <div class="compare-grid">
+            <div class="card lama">
+                <span class="badge lama">Desain Lama</span>
+                <img src="images/testi_lama.png" alt="Testimoni Web Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Kondisi Sebelumnya:</strong></p>
+                <ul>
+                    <li><strong>Tipografi Sulit Dibaca:</strong> Kalimat testimoni menggunakan format *Center-Aligned* (Rata Tengah) dengan baris yang sangat panjang. Ini secara ergonomis melelahkan mata pembaca.</li>
+                    <li><strong>Elemen Visual Standar:</strong> Hanya menggunakan ikon petik dua besar yang memakan tempat, tanpa ada indikator penilaian (rating) yang jelas.</li>
+                    <li><strong>Kesan Kurang Personal:</strong> Nama pemberi testimoni diletakkan di bawah dengan gaya teks yang kaku, tanpa adanya aksen visual pemberi identitas (seperti inisial atau foto).</li>
+                </ul>
+            </div>
+            <div class="card baru">
+                <span class="badge baru">Desain Baru</span>
+                <img src="images/testi_baru.png" alt="Testimoni Web Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <p><strong>Pemecahan Masalah (After):</strong></p>
+                <ul>
+                    <li><strong>Sistem Rating Bintang:</strong> Penambahan elemen 5 bintang emas memberikan validasi instan terhadap kualitas layanan tanpa pengunjung perlu membaca kata demi kata.</li>
+                    <li><strong>Layout Kartu Modern:</strong> Menggunakan *Left-Aligned* (Rata Kiri) yang natural bagi mata manusia, dibungkus dalam kartu putih bersih dengan sudut membulat (*border-radius*) yang halus.</li>
+                    <li><strong>Identitas Visual:</strong> Setiap testimoni kini memiliki "Avatar" inisial berwarna hijau yang memberikan kesan lebih personal dan kredibel, memisahkan dengan tegas antara Nama Tokoh dan Perannya.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: CTA Akhir & Footer -->
+    <div class="section-block">
+        <div class="section-header">5. Footer & Bottom Navigasi</div>
+        <div class="compare-grid">
+            <div class="card lama">
+                <span class="badge lama">Desain Lama</span>
+                <img src="images/footer_lama.png" alt="Footer Web Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <p><strong>Kondisi Sebelumnya:</strong></p>
+                <ul>
+                    <li><strong>Kurangnya Hierarki:</strong> Penggunaan warna hijau cerah yang dominan dan teks putih tanpa variasi ukuran membuat footer terasa datar dan sulit untuk membedakan kategori informasi.</li>
+                    <li><strong>Garis Pemisah (Border) Kaku:</strong> Menu dipisahkan dengan garis tipis horizontal yang memberikan kesan desain kuno (gaya web 2000-an).</li>
+                    <li><strong>Copyright Terpisah Drastis:</strong> Bagian hak cipta menggunakan warna hitam pekat yang tidak selaras dengan tema hijau di atasnya, menciptakan patahan visual yang tidak estetis.</li>
+                </ul>
+            </div>
+            <div class="card baru">
+                <span class="badge baru">Desain Baru</span>
+                <img src="images/footer_baru.png" alt="Footer Web Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <p><strong>Pemecahan Masalah (After):</strong></p>
+                <ul>
+                    <li><strong>Palet Hijau Gelap (*Deep Forest*):</strong> Menggunakan warna hijau yang lebih gelap dan elegan, memberikan kontras yang jauh lebih baik untuk teks dan memberikan kesan tempat wisata yang asri dan premium.</li>
+                    <li><strong>Grouping & Ikonografi:</strong> Informasi dikelompokkan dengan rapi menggunakan judul tebal. Penambahan ikon sosial media melayang (*Circle Social Icons*) dan ikon alamat berwarna emas membuat navigasi informasi menjadi jauh lebih modern.</li>
+                    <li><strong>Tipografi Terpadu:</strong> Penggunaan font "Outfit" secara konsisten memberikan identitas brand yang kuat hingga ke ujung halaman paling bawah. Copyright didesain minimalis dengan aksen hati merah kecil untuk sentuhan emosional.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div> <!-- Close Homepage Tab -->
+
+    <!-- TAB: TENTANG KAMI -->
+    <div id="about" class="tab-content">
+        <!-- Section: Hero -->
+        <div class="section-block">
+            <div class="section-header">1. Hero Section (Tentang Kami)</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/about_lama_1_hero.png" alt="About Hero Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Visual Statis:</strong> Hanya menampilkan foto tugu tumpukan batu penanda nama tanpa ada pesan selamat datang atau navigasi emosional.</li>
+                        <li><strong>Identitas Lemah:</strong> Tidak ada *copywriting* yang menjelaskan "siapa kami" di bagian awal penjelajahan.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/about_baru_1_hero.png" alt="About Hero Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Headline Emosional:</strong> Menggunakan pesan yang kuat *"Bukan Sekadar Liburan..."* untuk memposisikan Herbal Insani sebagai destinasi edukatif sejati.</li>
+                        <li><strong>Latar Belakang Imersif:</strong> Foto aktivitas anak-anak dengan filter hijau khas yang memberikan nuansa sejuk dan ramah keluarga.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Konsep & Misi -->
+        <div class="section-block">
+            <div class="section-header">2. Konsep & Misi Edukasi</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/about_lama_2_teks.png" alt="About Teks Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Wall of Text:</strong> Paragraf yang sangat panjang dan menjemukan tanpa jeda visual (ikon/foto pendukung).</li>
+                        <li><strong>Desain Tidak Ergonomis:</strong> Judul berwarna oranye di atas putih dengan kontras rendah menyulitkan mata pengunjung.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/about_baru_2_konsep.png" alt="Konsep Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <img src="images/about_baru_3_misi.png" alt="Misi Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Layout Alternating:</strong> Penyajian teks dan gambar yang berselang-seling kiri-kanan agar ritme membaca tidak membosankan.</li>
+                        <li><strong>Visual Berkualitas Tinggi:</strong> Penggunaan foto stok atau dokumentasi asli yang cerah dan menginspirasi untuk mendukung teks visi-misi.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Fasilitas & Wahana -->
+        <div class="section-block">
+            <div class="section-header">3. Daftar Fasilitas & Wahana</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/about_lama_3_paket.png" alt="About Campur Paket Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd;">
+                    <img src="images/about_lama_4_testi.png" alt="About Campur Testi Lama" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Ketidakefisienan Konten:</strong> Halaman Profil dijejali modul Paket Wisata dan Testimoni yang tidak relevan dengan peruntukan halaman "Tentang Kami".</li>
+                        <li><strong>Navigasi Berulang:</strong> Duplikasi konten dari Homepage membuat pengunjung cepat merasa bosan karena tidak menemukan informasi baru.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/about_baru_4_fasilitas.png" alt="Fasilitas Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Klasifikasi Jelas:</strong> Memisahkan Fasilitas Umum dan Wahana Eksklusif (Berbayar) dalam kartu kontras agar pengunjung tidak bingung mengenai biaya tambahan.</li>
+                        <li><strong>Ikonografi Hijau:</strong> Konsistensi penggunaan ikon hijau untuk memperkuat identitas taman herbal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: CTA Akhir -->
+        <div class="section-block">
+            <div class="section-header">4. Call to Action (CTA)</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <div class="img-placeholder" style="height: 200px; background-color: #fdd; color: #a33; border-color: #fbb;">Tidak Ada Elemen CTA</div>
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Missing Conversion Point:</strong> Halaman Profil berakhir begitu saja setelah informasi teks selesai. Tidak ada tombol atau ajakan bagi pengunjung untuk melakukan reservasi atau bertanya lebih lanjut.</li>
+                        <li><strong>Dead End:</strong> Secara psikologis, ini adalah "jalan buntu" bagi audiens, memaksa mereka mencari sendiri menu kontak atau paket jika tertarik.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/about_baru_5_cta.png" alt="CTA Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Tombol CTA Kontras:</strong> Penggunaan warna emas pada tombol utama di atas latar hijau gelap untuk memastikan konversi klik yang maksimal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: GALERI -->
+    <div id="galeri" class="tab-content">
+        <!-- Section: Hero & Header -->
+        <div class="section-block">
+            <div class="section-header">1. Hero Galeri & Visual Header</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/galeri_lama_1.png" alt="Galeri Hero Lama" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Header Standar:</strong> Hanya teks "Galeri Foto" polos dengan tab kategori yang terlihat kaku dan kurang modern.</li>
+                        <li><strong>Tanpa Konteks:</strong> Pengunjung langsung dihadapkan pada foto tanpa ada penyambutan visual yang menggugah keinginan untuk mengeksplorasi.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/galeri_baru_1_hero.png" alt="Galeri Hero Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Hero Imersif:</strong> Penggunaan banner hijau transparan dengan judul *"Rekam Jejak Keseruan Liburan"* yang memberikan kesan emosional.</li>
+                        <li><strong>Visual Berkualitas:</strong> Latar belakang video atau foto berkualitas tinggi yang diberi filter hijau khas untuk konsistensi *brand*.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Filter & Grid -->
+        <div class="section-block">
+            <div class="section-header">2. Sistem Filter & Kerapian Grid</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/galeri_lama_2.png" alt="Galeri Grid Lama" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Susunan Tidak Beraturan:</strong> Foto-foto ditampilkan dengan ukuran yang tidak seragam, membuat tampilan halaman terlihat berantakan.</li>
+                        <li><strong>Filter Minimalis:</strong> Tab kategori hanya berupa teks sederhana yang kurang interaktif.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/galeri_baru_2_filter.png" alt="Galeri Filter Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Pill-Shaped Filter:</strong> Tombol kategori yang modern dengan ikon dan warna hijau solid untuk kategori aktif, memudahkan navigasi cepat.</li>
+                        <li><strong>Masonry Grid Rapi:</strong> Semua foto memiliki *border-radius* yang konsisten dan jarak (*gap*) yang proporsional, memberikan kesan premium.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Lightbox / View Mode -->
+        <div class="section-block">
+            <div class="section-header">3. Pengalaman Melihat Foto (Lightbox)</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <div class="img-placeholder" style="height: 200px;">[ Fitur Lightbox Standar Browser ]</div>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/galeri_baru_3_lightbox.png" alt="Galeri Lightbox Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Custom Lightbox:</strong> Tampilan layar penuh dengan latar belakang gelap pekat yang menonjolkan keindahan foto.</li>
+                        <li><strong>Keterangan Foto:</strong> Penambahan judul di bawah foto (*caption*) yang menjelaskan momen tersebut (misal: "Fasilitas Resort").</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: PAKET -->
+    <div id="paket" class="tab-content">
+        <!-- Section: Hero & Navigation -->
+        <div class="section-block">
+            <div class="section-header">1. Navigasi Kategori Paket</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <div class="img-placeholder" style="height: 200px; background-color: #eee;">Tidak Ada Banner Khusus</div>
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Fragmentasi Halaman:</strong> Informasi paket tersebar di banyak URL/halaman yang berbeda. Pengunjung harus bolak-balik klik menu untuk membandingkan antar paket.</li>
+                        <li><strong>Datar & Membingungkan:</strong> Tanpa adanya sistem navigasi kategori yang terpusat, alur informasi terasa terputus-putus.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/paket_baru_1_hero.png" alt="Paket Hero Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Seamless Integrated UX:</strong> Semua jenis paket (Edukasi, Resort, Camp, dll) digabung dalam satu halaman yang sangat responsif menggunakan sistem tab.</li>
+                        <li><strong>Navigasi Sekali Klik:</strong> Pengunjung bisa membandingkan berbagai paket hanya dengan sekali klik tanpa perlu *loading* halaman baru, membuat pengalaman pengguna jauh lebih nyaman dan cepat.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Paket Perorangan / Edukasi -->
+        <div class="section-block">
+            <div class="section-header">2. Tampilan Detail Paket (Edukasi/Perorangan)</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/paket_lama_1_perorangan.png" alt="Paket Perorangan Lama" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Wall of Text:</strong> Informasi harga dan fasilitas hanya berupa daftar ketik yang membosankan dan sulit dipindai (*scan*) cepat.</li>
+                        <li><strong>Kontras Buruk:</strong> Penggunaan warna teks hijau dan oranye yang sangat kontras di atas latar putih polos tanpa pembatas (card).</li>
+                        <li><strong>Kurang Menarik:</strong> Foto fasilitas diletakkan begitu saja di samping teks tanpa *layouting* yang profesional.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/paket_baru_2_sekolah.png" alt="Paket Sekolah Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Info Card Elegan:</strong> Detail paket dibungkus dalam kartu putih bersih dengan bayangan lembut (*soft shadow*).</li>
+                        <li><strong>Hierarchy Informasi Jelas:</strong> Harga diletakkan dalam *floating badge* oranye yang mencolok. Fasilitas dipisahkan menjadi dua kolom dengan ikon *check-list* hijau untuk keterbacaan maksimal.</li>
+                        <li><strong>Tombol Reservasi:</strong> Penambahan tombol "Reservasi" yang kontras di bagian bawah kartu.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Paket Resort -->
+        <div class="section-block">
+            <div class="section-header">3. Katalog Penyewaan Resort</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/paket_lama_2_resort_1.png" alt="Paket Resort Lama 1" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                    <img src="images/paket_lama_3_resort_2.png" alt="Paket Resort Lama 2" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Informasi Tercecer:</strong> Daftar resort ditampilkan satu per satu secara vertikal dengan format teks yang tidak rapi.</li>
+                        <li><strong>Tampilan Kuno:</strong> Layout mirip dengan selebaran harga tradisional, bukan seperti website pariwisata modern.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/paket_baru_3_resort_1.png" alt="Paket Resort Baru 1" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <img src="images/paket_baru_4_resort_2.png" alt="Paket Resort Baru 2" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>Split Layout:</strong> Foto resort di kiri dan detail teks di kanan memberikan keseimbangan visual yang sempurna.</li>
+                        <li><strong>Kapasitas & Fasilitas Tersturktur:</strong> Penggunaan *badge* untuk kapasitas tamu dan pengelompokan fasilitas yang lebih rapi.</li>
+                        <li><strong>Vibe Eksklusif:</strong> Kombinasi tipografi modern dan warna hijau-emas memberikan kesan menginap yang eksklusif dan nyaman.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: HERBAL -->
+    <div id="herbal" class="tab-content">
+        <div class="section-block">
+            <div class="section-header">Fitur Baru: Ensiklopedia TOGA (Tanaman Obat Keluarga)</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <div class="img-placeholder" style="height: 300px; background-color: #f5f5f5; color: #999; border-color: #ddd;">Fitur Tidak Tersedia</div>
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Belum Ada Dokumentasi Digital:</strong> Informasi mengenai ragam koleksi tanaman obat di Herbal Insani hanya bisa didapatkan secara langsung di lokasi.</li>
+                        <li><strong>Kehilangan Potensi Edukasi:</strong> Website lama hanya berfungsi sebagai brosur reservasi, belum menjadi media edukasi tanaman obat sesuai visi utama taman wisata.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/herbal_baru_1_hero.png" alt="Herbal Hero Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <img src="images/herbal_baru_2_search.png" alt="Herbal Search Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <img src="images/herbal_baru_3_grid.png" alt="Herbal Grid Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Nilai Tambah Desain Baru (Innovation):</strong></p>
+                    <ul>
+                        <li><strong>Pusat Pengetahuan Digital:</strong> Menghadirkan sistem ensiklopedia tanaman obat yang lengkap, mencakup nama ilmiah, kategori, hingga khasiatnya.</li>
+                        <li><strong>Fitur Pencarian Pintar:</strong> Memudahkan pengunjung mencari tanaman berdasarkan nama atau khasiat tertentu (Contoh: "Kunyit" atau "Batuk").</li>
+                        <li><strong>Edukasi Interaktif:</strong> Penggunaan kartu informasi (*Card*) yang cantik dengan indikator "Durasi Baca" dan kategori tanaman (Rimpang, Daun, dll).</li>
+                        <li><strong>Penguatan Brand Identity:</strong> Fitur ini menjadikan website Herbal Insani sebagai rujukan utama wisata edukasi herbal di Indonesia.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: KONTAK -->
+    <div id="kontak" class="tab-content">
+        <!-- Section: Integrasi Kontak & Lokasi -->
+        <div class="section-block">
+            <div class="section-header">1. Integrasi Halaman (Kontak & Lokasi)</div>
+            <div class="compare-grid">
+                <div class="card lama">
+                    <span class="badge lama">Desain Lama</span>
+                    <img src="images/kontak_lama_1_lokasi.png" alt="Lokasi Lama" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                    <img src="images/kontak_lama_2_kontak.png" alt="Kontak Lama" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd;">
+                    <p><strong>Kondisi Sebelumnya:</strong></p>
+                    <ul>
+                        <li><strong>Halaman Terpisah:</strong> Informasi Lokasi dan Kontak diletakkan pada halaman yang berbeda. Pengunjung harus berpindah-pindah halaman untuk mendapatkan detail yang lengkap.</li>
+                        <li><strong>Visual Sederhana:</strong> Tampilan peta dan daftar kontak sangat standar, menyerupai desain blog lama dengan hierarki informasi yang kurang jelas.</li>
+                        <li><strong>Datar:</strong> Tidak ada formulir interaktif; informasi disuguhkan secara pasif.</li>
+                    </ul>
+                </div>
+                <div class="card baru">
+                    <span class="badge baru">Desain Baru</span>
+                    <img src="images/kontak_baru_1_form.png" alt="Form Kontak Baru" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <img src="images/kontak_baru_2_map.png" alt="Map Baru" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <p><strong>Pemecahan Masalah (After):</strong></p>
+                    <ul>
+                        <li><strong>One-Stop Information:</strong> Menggabungkan Kontak dan Lokasi dalam satu halaman fungsional. Efisiensi navigasi meningkat drastis.</li>
+                        <li><strong>Formulir Interaktif:</strong> Penambahan formulir "Tinggalkan Pesan" yang modern untuk mempermudah reservasi rombongan atau pertanyaan khusus.</li>
+                        <li><strong>Desain Grid Profesionall:</strong> Informasi kontak dikelompokkan dalam kartu hijau solid yang kontras dengan formulir putih, memberikan kesan sangat profesional dan terpercaya.</li>
+                        <li><strong>Panduan Lokasi Jelas:</strong> Peta interaktif diberikan ruang luas dengan teks panduan arah yang informatif.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab content
+            const contents = document.getElementsByClassName('tab-content');
+            for (let content of contents) {
+                content.classList.remove('active');
+            }
+
+            // Remove active class from all buttons
+            const buttons = document.getElementsByClassName('tab-btn');
+            for (let btn of buttons) {
+                btn.classList.remove('active');
+            }
+
+            // Show current tab and set button as active
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

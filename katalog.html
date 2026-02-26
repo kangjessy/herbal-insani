@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Herbal | Taman Wisata Herbal Insani</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* CSS Khusus Katalog Herbal */
+        .catalog-header {
+            position: relative;
+            background: url('images/hero_bg.png') center/cover no-repeat;
+            padding: 160px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .catalog-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(16, 55, 30, 0.95), rgba(91, 179, 24, 0.8));
+        }
+        
+        .catalog-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .catalog-header h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        
+        .catalog-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Search & Filter Bar (Visual Only) */
+        .search-bar-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            transform: translateY(50%); /* Half inside header, half over the edge */
+            z-index: 10;
+            padding: 0 24px;
+        }
+        
+        .search-wrapper {
+            background: var(--white);
+            border-radius: 100px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid var(--border-color);
+        }
+        
+        .search-wrapper i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .search-wrapper input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-family: inherit;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            background: transparent;
+        }
+        
+        .search-wrapper input::placeholder {
+            color: #a0aec0;
+        }
+        
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Catalog Grid */
+        .catalog-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .plant-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .plant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+        
+        .plant-img {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f7fafc;
+        }
+        
+        .plant-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .plant-card:hover .plant-img img {
+            transform: scale(1.05);
+        }
+        
+        .plant-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        .plant-content {
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .plant-name {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        
+        .plant-latin {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-family: serif;
+        }
+        
+        .plant-desc {
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 24px;
+            flex: 1; /* Pushes list to the bottom */
+        }
+        
+        .plant-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        
+        .plant-benefits li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        
+        .plant-benefits li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .plant-benefits li::before {
+            content: '\2713'; /* Unicode Checkmark */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .plant-actions {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .read-more {
+            color: var(--primary-dark);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+        }
+        
+        .read-more i {
+            transition: transform 0.3s ease;
+        }
+        
+        .plant-card:hover .read-more i {
+            transform: translateX(4px);
+        }
+
+        /* Pagination Placeholder */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 64px;
+        }
+        
+        .page-dot {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .page-dot:hover, .page-dot.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .catalog-header h1 { font-size: 2.5rem; }
+            .search-wrapper { flex-direction: column; padding: 16px; border-radius: 24px; gap: 12px; }
+            .search-wrapper input { width: 100%; text-align: center; }
+            .search-btn { width: 100%; }
+            .search-bar-container { transform: translateY(20px); }
+            .catalog-section { padding-top: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="container nav-content">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" style="color: var(--primary-dark) !important;">
+                    <i class="ph-fill ph-leaf"></i> Herbal Insani
+                </a>
+                <button class="mobile-toggle" aria-label="Toggle Menu">
+                    <i class="ph-bold ph-list"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+                <li><a href="paket.html">Paket</a></li>
+                <li><a href="katalog.html" class="active">Katalog Herbal</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="kontak.html">Lokasi & Kontak</a></li>
+            </ul>
+            <a href="kontak.html" class="btn-primary">Pesan Tiket</a>
+        </div>
+    </nav>
+<!-- Catalog Header -->
+    <header class="catalog-header">
+        <div class="container">
+            <h1>Ensiklopedia TOGA</h1>
+            <p>Eksplorasi ragam koleksi Tanaman Obat Keluarga (TOGA) unggulan Nusantara yang kami rawat dan lestarikan di Taman Wisata Herbal Insani.</p>
+        </div>
+    </header>
+
+    <!-- Interactive Search Bar Placeholder -->
+    <div class="search-bar-container">
+        <div class="search-wrapper">
+            <i class="ph-regular ph-magnifying-glass"></i>
+            <input type="text" placeholder="Cari nama tanaman atau khasiat (Cth: Kunyit, Batuk)...">
+            <button class="search-btn">Cari Tanaman</button>
+        </div>
+    </div>
+
+    <!-- Catalog Grid -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 24px;">
+                <span class="badge">Koleksi Tumbuhan</span>
+            </div>
+            
+            <div class="catalog-grid">
+                <!-- Item 1: Jahe Merah -->
+                <div class="plant-card">
+                    <div class="plant-img">
+                        <span class="plant-badge">Rimpang</span>
+                        <!-- Menggunakan dummy image yg relevan, idealnya diganti foto tanaman asli -->
+                        <img src="images/activity_herbal.png" alt="Jahe Merah">
+                    </div>
+                    <div class="plant-content">
+                        <h3 class="plant-name">Jahe Merah</h3>
+                        <div class="plant-latin">Zingiber officinale var. rubrum</div>
+                        <p class="plant-desc">
+                            Varian jahe dengan rimpang kemerahan dan ukuran lebih kecil. Memiliki kandungan senyawa aktif gingerol yang jauh lebih tinggi dengan rasa yang lebih pedas dan aroma tajam.
+                        </p>
+                        <ul class="plant-benefits">
+                            <li>Meningkatkan sistem imun (kekebalan) tubuh.</li>
+                            <li>Menghangatkan tubuh dan melegakan tenggorokan.</li>
+                            <li>Efektif meredakan batuk dan nyeri otot.</li>
+                        </ul>
+                        <div class="plant-actions">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);"><i class="ph-fill ph-book-open"></i> 2 Menit baca</span>
+                            <a href="kontak.html" class="read-more">Selengkapnya <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Kumis Kucing -->
+                <div class="plant-card">
+                    <div class="plant-img">
+                        <span class="plant-badge">Terna</span>
+                        <img src="images/hero_bg.png" alt="Kumis Kucing">
+                    </div>
+                    <div class="plant-content">
+                        <h3 class="plant-name">Kumis Kucing</h3>
+                        <div class="plant-latin">Orthosiphon aristatus</div>
+                        <p class="plant-desc">
+                            Tanaman terna tegak yang dikenal luas berkat ciri khas bunganya yang menyerupai helaian kumis kucing. Daunnya merupakan bagian utama yang dimanfaatkan sebagai obat.
+                        </p>
+                        <ul class="plant-benefits">
+                            <li>Memfasilitasi peluruhan kencing (Diuretik).</li>
+                            <li>Membantu mengatasi infeksi saluran kemih (ISK).</li>
+                            <li>Dipercaya dapat mengobati batu ginjal ringan.</li>
+                        </ul>
+                        <div class="plant-actions">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);"><i class="ph-fill ph-book-open"></i> 3 Menit baca</span>
+                            <a href="kontak.html" class="read-more">Selengkapnya <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Sambiloto -->
+                <div class="plant-card">
+                    <div class="plant-img">
+                        <span class="plant-badge">Daun</span>
+                        <img src="images/activity_herbal.png" alt="Sambiloto">
+                    </div>
+                    <div class="plant-content">
+                        <h3 class="plant-name">Sambiloto</h3>
+                        <div class="plant-latin">Andrographis paniculata</div>
+                        <p class="plant-desc">
+                            Sensasi rasanya memang sangat pahit, namun sambiloto telah digunakan selama berabad-abad dalam pengobatan tradisional Ayurweda dan jamu Jawa karena zat aktif andrographolide.
+                        </p>
+                        <ul class="plant-benefits">
+                            <li>Antioksidan dan anti-inflamasi alami yang kuat.</li>
+                            <li>Menurunkan demam tinggi dan meringankan flu.</li>
+                            <li>Membantu menstabilkan kadar gula darah.</li>
+                        </ul>
+                        <div class="plant-actions">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);"><i class="ph-fill ph-book-open"></i> 2 Menit baca</span>
+                            <a href="kontak.html" class="read-more">Selengkapnya <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: Kunyit -->
+                <div class="plant-card">
+                    <div class="plant-img">
+                        <span class="plant-badge">Rimpang</span>
+                        <img src="images/hero_bg.png" alt="Kunyit">
+                    </div>
+                    <div class="plant-content">
+                        <h3 class="plant-name">Kunyit</h3>
+                        <div class="plant-latin">Curcuma longa</div>
+                        <p class="plant-desc">
+                            Lebih dari sekadar bumbu dapur berwarna kuning pekat. Kunyit mengandung kurkumin yang merupakan bintang utama dalam khasiat antiperadangan dan pewarna alami masakan Nusantara.
+                        </p>
+                        <ul class="plant-benefits">
+                            <li>Meredakan nyeri lambung / maag (Dyspepsia).</li>
+                            <li>Meredakan rasa nyeri akibat peradangan sendi.</li>
+                            <li>Menjernihkan dan menjaga kesehatan kulit wajah.</li>
+                        </ul>
+                        <div class="plant-actions">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);"><i class="ph-fill ph-book-open"></i> 4 Menit baca</span>
+                            <a href="kontak.html" class="read-more">Selengkapnya <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Temulawak -->
+                <div class="plant-card">
+                    <div class="plant-img">
+                        <span class="plant-badge">Rimpang</span>
+                        <img src="images/activity_herbal.png" alt="Temulawak">
+                    </div>
+                    <div class="plant-content">
+                        <h3 class="plant-name">Temulawak</h3>
+                        <div class="plant-latin">Curcuma zanthorrhiza</div>
+                        <p class="plant-desc">
+                            Tanaman rimpang eksotis warisan asli nenek moyang Indonesia. Memiliki tekstur rimpang yang sedikit lebih besar dari kunyit dengan corak garis gelap dan warna kuning pucat.
+                        </p>
+                        <ul class="plant-benefits">
+                            <li>Hepatoprotektor (Bagus untuk melindungi hati/liver).</li>
+                            <li>Mengembalikan dan menambah nafsu makan anak.</li>
+                            <li>Meringankan gangguan pencernaan dan perut kembung.</li>
+                        </ul>
+                        <div class="plant-actions">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);"><i class="ph-fill ph-book-open"></i> 3 Menit baca</span>
+                            <a href="kontak.html" class="read-more">Selengkapnya <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6: Daun Sirih -->
+                <div class="plant-card">
+                    <div class="plant-img">
+                        <span class="plant-badge">Merambat</span>
+                        <img src="images/hero_bg.png" alt="Daun Sirih">
+                    </div>
+                    <div class="plant-content">
+                        <h3 class="plant-name">Daun Sirih</h3>
+                        <div class="plant-latin">Piper betle</div>
+                        <p class="plant-desc">
+                            Tumbuhan merambat asli Indonesia yang daunnya memiliki bentuk hati dengan aroma menyengat yang khas. Kerap digunakan tradisi menginang di masa lampau.
+                        </p>
+                        <ul class="plant-benefits">
+                            <li>Antiseptik dan antibakteri alami tingkat tinggi.</li>
+                            <li>Membantu menghentikan pendarahan luar (cth: Mimisan).</li>
+                            <li>Menghilangkan bau badan & menjaga kesehatan mulut.</li>
+                        </ul>
+                        <div class="plant-actions">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);"><i class="ph-fill ph-book-open"></i> 2 Menit baca</span>
+                            <a href="kontak.html" class="read-more">Selengkapnya <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination Visual -->
+            <div class="pagination">
+                <div class="page-dot active">1</div>
+                <div class="page-dot">2</div>
+                <div class="page-dot">3</div>
+                <div class="page-dot"><i class="ph-bold ph-caret-right"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo text-white">
+                        <i class="ph-fill ph-leaf"></i> Herbal Insani
+                    </a>
+                    <p style="opacity: 0.8; margin-top: 24px;">Taman wisata edutainment terkemuka yang memadukan keindahan alam dengan edukasi herbal untuk keluarga dan anak-anak.</p>
+                                        <div class="social-links" style="margin-top: 24px;">
+                        <a href="https://instagram.com" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="ph-fill ph-youtube-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Jelajahi</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="paket.html">Pilihan Paket</a></li>
+                        <li><a href="katalog.html">Katalog Herbal</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <ul class="contact-list">
+                        <li><i class="ph-fill ph-map-pin"></i> <span>Jl. Rawakalong, Pengasinan, Kec. Sawangan, Kota Depok, Jawa Barat.</span></li>
+                        <li><i class="ph-fill ph-envelope-simple"></i> <span>info@herbalinsani.com</span></li>
+                        <li><i class="ph-fill ph-phone"></i> <span>0821-2544-4577 (WA)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Taman Wisata Herbal Insani. All rights reserved. Redesigned with ❤️.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

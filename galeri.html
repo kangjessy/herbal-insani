@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri | Taman Wisata Herbal Insani</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* CSS Khusus Halaman Galeri */
+        .page-hero {
+            position: relative;
+            background: url('images/hero_bg.png') center/cover no-repeat;
+            padding: 200px 0 120px;
+            color: white;
+            text-align: center;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(16, 55, 30, 0.95), rgba(91, 179, 24, 0.7));
+        }
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .page-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        .page-hero p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            padding: 40px 0 100px;
+            background-color: var(--bg-light);
+        }
+        
+        .tab-nav-wrapper {
+            margin-top: -60px;
+            margin-bottom: 60px;
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            padding-bottom: 100px;
+            background-color: var(--bg-light);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            grid-auto-flow: dense;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(16, 55, 30, 0.9) 0%, rgba(16, 55, 30, 0.2) 50%, transparent 100%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-overlay h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+        .gallery-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+        .gallery-item:hover .gallery-overlay h3,
+        .gallery-item:hover .gallery-overlay p {
+            transform: translateY(0);
+        }
+        .zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .gallery-item:hover .zoom-icon {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Large CTA Banner */
+        .cta-banner-wrap {
+            padding: 0 24px;
+            margin-top: 60px;
+        }
+        .cta-banner-large {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: 32px;
+            padding: 100px 40px;
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            max-width: 1200px;
+            margin: 0 auto -100px;
+            position: relative;
+            z-index: 5;
+            background-image: url('images/activity_herbal.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            border: 8px solid var(--white);
+        }
+        .cta-banner-large::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(16, 55, 30, 0.85);
+            border-radius: 24px;
+            z-index: 0;
+        }
+        .cta-banner-large > * {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-banner-large h2 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+        .cta-banner-large p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .page-hero { padding: 160px 0 80px; }
+            .page-hero h1 { font-size: 3rem; }
+        }
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item { grid-column: span 1 !important; aspect-ratio: 4/3 !important; }
+            .cta-banner-large { padding: 60px 24px; margin-bottom: -60px; }
+            .cta-banner-large h2 { font-size: 2.2rem; }
+            .tab-nav-wrapper { padding: 0 16px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 16px; margin: -40px 0 24px; }
+            .tab-btn { white-space: nowrap; padding: 12px 20px; font-size: 1rem; }
+            .tab-btn .icon-circle { width: 36px; height: 36px; font-size: 1.2rem; }
+        }
+
+        /* Lightbox Style */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            max-width: 100%;
+            max-height: 100%;
+            position: relative;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--white);
+            color: var(--primary-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .lightbox-caption h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="container nav-content">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" style="color: var(--primary-dark) !important;">
+                    <i class="ph-fill ph-leaf"></i> Herbal Insani
+                </a>
+                <button class="mobile-toggle" aria-label="Toggle Menu">
+                    <i class="ph-bold ph-list"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+                <li><a href="paket.html">Paket</a></li>
+                <li><a href="katalog.html">Katalog Herbal</a></li>
+                <li><a href="galeri.html" class="active">Galeri</a></li>
+                <li><a href="kontak.html">Lokasi & Kontak</a></li>
+            </ul>
+            <a href="kontak.html" class="btn-primary">Pesan Tiket</a>
+        </div>
+    </nav>
+<!-- Visual Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="badge" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4);">Dokumentasi Visual</span>
+            <h1>Rekam Jejak<br><span style="color: var(--secondary);">Keseruan Liburan</span></h1>
+            <p>Intip berbagai momen bahagia, keseruan belajar, dan pesona keindahan alam terbuka di Taman Wisata Herbal Insani.</p>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            
+            <!-- Filters (Harmonized with Paket Page) -->
+            <div class="tab-nav-wrapper">
+                <button class="tab-btn active" data-filter="all">
+                    <div class="icon-circle"><i class="ph-fill ph-grid-four"></i></div>
+                    <span>Semua Foto</span>
+                </button>
+                <button class="tab-btn" data-filter="edukasi">
+                    <div class="icon-circle"><i class="ph-fill ph-student"></i></div>
+                    <span>Edukasi Anak</span>
+                </button>
+                <button class="tab-btn" data-filter="wahana">
+                    <div class="icon-circle"><i class="ph-fill ph-waves"></i></div>
+                    <span>Wahana Air</span>
+                </button>
+                <button class="tab-btn" data-filter="outbound">
+                    <div class="icon-circle"><i class="ph-fill ph-users-three"></i></div>
+                    <span>Outbound</span>
+                </button>
+                <button class="tab-btn" data-filter="fasilitas">
+                    <div class="icon-circle"><i class="ph-fill ph-house-line"></i></div>
+                    <span>Fasilitas</span>
+                </button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-item" data-category="outbound">
+                    <img src="images/hero_bg.png" alt="Keseruan Gathering" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Family Gathering</h3>
+                        <p>Keseruan acara gathering perusahaan di lapangan terbuka.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item" data-category="edukasi">
+                    <img src="images/activity_herbal.png" alt="Edukasi TOGA" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Praktik Pengobatan</h3>
+                        <p>Anak-anak sekolah belajar meracik tanaman obat langsung di alam.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item" data-category="wahana">
+                    <img src="images/hero_bg.png" style="object-position: bottom right;" alt="Wahana Kano" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Serunya Bermain Kano</h3>
+                        <p>Wahana air unggulan untuk melatih kekompakan mendayung.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item" data-category="outbound">
+                    <img src="images/activity_herbal.png" style="object-position: top left;" alt="Memanah" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Arena Panahan</h3>
+                        <p>Aktivitas olahraga sunnah memanah khusus untuk anak dan dewasa.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item" data-category="wahana">
+                    <img src="images/hero_bg.png" style="object-position: top center;" alt="Berenang" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Kolam Renang Ceria</h3>
+                        <p>Berenang sepuasnya tanpa batas waktu di fasilitas kolam gratis.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item" data-category="edukasi">
+                    <img src="images/activity_herbal.png" style="object-position: center;" alt="Panen Hidroponik" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Membawa Pulang Tanaman</h3>
+                        <p>Peserta paket sekolah akan mendapatkan souvenir berupa tanaman obat.</p>
+                    </div>
+                </div>
+                
+                 <!-- Item 7 -->
+                <div class="gallery-item" data-category="fasilitas">
+                    <img src="images/hero_bg.png" style="filter: brightness(1.2) contrast(1.1);" alt="Saung Makan" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Saung Makan</h3>
+                        <p>Bersantai bersama keluarga menikmati hidangan di atas saung.</p>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="gallery-item" data-category="fasilitas">
+                    <img src="images/activity_herbal.png" style="filter: saturate(1.5);" alt="Resort" class="gallery-img">
+                    <div class="zoom-icon"><i class="ph-bold ph-arrows-out"></i></div>
+                    <div class="gallery-overlay">
+                        <h3>Fasilitas Resort</h3>
+                        <p>Dapatkan pengalaman menginap menyatu dengan alam yang tenang.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Load More Button -->
+            <div style="text-align: center; margin-top: 60px;">
+                <button class="btn-primary" style="background-color: var(--white); color: var(--text-main); border: 2px solid var(--border-color);"><i class="ph-bold ph-spinner-gap"></i> Tampilkan Foto Lainnya</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Large CTA Banner -->
+    <div class="cta-banner-wrap">
+        <div class="cta-banner-large">
+            <h2>Tertarik Menciptakan Momen<br>Bahagia Keluarga di Sini?</h2>
+            <p>Harga tiket rombongan dan paket wahana sangat fleksibel. Jangan ragu konsultasi rencana acara liburan Anda bersama tim kami.</p>
+            <a href="kontak.html" class="btn-primary btn-large" style="background: var(--secondary); color: var(--primary-dark); border-color: var(--secondary); font-size: 1.15rem; padding: 16px 32px;"><i class="ph-bold ph-whatsapp-logo"></i> Hubungi CS via WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo text-white">
+                        <i class="ph-fill ph-leaf"></i> Herbal Insani
+                    </a>
+                    <p style="opacity: 0.8; margin-top: 24px;">Taman wisata edutainment terkemuka yang memadukan keindahan alam dengan edukasi herbal untuk keluarga dan anak-anak.</p>
+                                        <div class="social-links" style="margin-top: 24px;">
+                        <a href="https://instagram.com" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="ph-fill ph-youtube-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Jelajahi</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="paket.html">Pilihan Paket</a></li>
+                        <li><a href="katalog.html">Katalog Herbal</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <ul class="contact-list">
+                        <li><i class="ph-fill ph-map-pin"></i> <span>Jl. Rawakalong, Pengasinan, Kec. Sawangan, Kota Depok, Jawa Barat.</span></li>
+                        <li><i class="ph-fill ph-envelope-simple"></i> <span>info@herbalinsani.com</span></li>
+                        <li><i class="ph-fill ph-phone"></i> <span>0821-2544-4577 (WA)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Taman Wisata Herbal Insani. All rights reserved. Redesigned with ❤️.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="galleryLightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-close" id="closeLightbox"><i class="ph-bold ph-x"></i></div>
+            <img src="" alt="Gallery Large" id="lightboxImg">
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Gallery Filter Logic
+        const filterBtns = document.querySelectorAll('.tab-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        // Add animation delay logic if needed
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('galleryLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+        const closeBtn = document.getElementById('closeLightbox');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('.gallery-img').src;
+                const title = item.querySelector('h3').innerText;
+                const desc = item.querySelector('p').innerText;
+
+                lightboxImg.src = img;
+                lightboxTitle.innerText = title;
+                lightboxDesc.innerText = desc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Stop scrolling
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>

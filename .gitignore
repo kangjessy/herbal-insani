@@ -1,0 +1,20 @@
+# Abaikan versi cadangan/opsi lain
+option-2/
+option-3/
+
+# Abaikan folder WordPress (berat dan banyak file core)
+wisata-herbal-insani/
+
+# Abaikan konfigurasi node & script pembantu
+node_modules/
+package.json
+package-lock.json
+prefix_css.js
+prefix_css.py
+update_css.js
+fix_css_plugin.py
+WORDPRESS_PROGRESS.md
+
+# Sertakan file utama Opsi 1 (otomatis masuk karena tidak di-ignore):
+# index.html, style.css, script.js, komparasi.html, dll.
+# images/

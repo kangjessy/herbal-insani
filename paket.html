@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilihan Paket Wisata | Taman Wisata Herbal Insani</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="container nav-content">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" style="color: var(--primary-dark) !important;">
+                    <i class="ph-fill ph-leaf"></i> Herbal Insani
+                </a>
+                <button class="mobile-toggle" aria-label="Toggle Menu">
+                    <i class="ph-bold ph-list"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+                <li><a href="paket.html" class="active">Paket</a></li>
+                <li><a href="katalog.html">Katalog Herbal</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="kontak.html">Lokasi & Kontak</a></li>
+            </ul>
+            <a href="kontak.html" class="btn-primary">Pesan Tiket</a>
+        </div>
+    </nav>
+<!-- Page Header -->
+    <header class="page-header primary-gradient">
+        <div class="container text-center">
+            <h1>Pilihan Paket Wisata</h1>
+            <p>Harga sangat hemat (fleksibel) yang dapat disesuaikan dengan jumlah anggota rombongan Anda.</p>
+        </div>
+    </header>
+
+    <!-- Content Section: Dynamic Tabs -->
+    <section class="package-section">
+        <div class="container">
+            
+            <!-- Tab Navigation -->
+            <div class="tab-nav-wrapper">
+                <button class="tab-btn active" data-target="paket-sekolah">
+                    <div class="icon-circle"><i class="ph-fill ph-student"></i></div>
+                    <span>Anak Sekolah</span>
+                </button>
+                <button class="tab-btn" data-target="paket-individu">
+                    <div class="icon-circle"><i class="ph-fill ph-user"></i></div>
+                    <span>Perorangan</span>
+                </button>
+                <button class="tab-btn" data-target="paket-gathering">
+                    <div class="icon-circle"><i class="ph-fill ph-users-three"></i></div>
+                    <span>Family Gathering</span>
+                </button>
+                <button class="tab-btn" data-target="paket-camp">
+                    <div class="icon-circle"><i class="ph-fill ph-tent"></i></div>
+                    <span>Paket Camp</span>
+                </button>
+                <button class="tab-btn" data-target="paket-resort">
+                    <div class="icon-circle"><i class="ph-fill ph-house-line"></i></div>
+                    <span>Sewa Resort</span>
+                </button>
+                <button class="tab-btn" data-target="paket-saung">
+                    <div class="icon-circle"><i class="ph-fill ph-storefront"></i></div>
+                    <span>Sewa Saung</span>
+                </button>
+            </div>
+
+            <!-- Tab Content Wrapper -->
+            <div class="tab-content-container">
+                
+                <!-- Tab Panel: Anak Sekolah (Active by Default) -->
+                <div class="tab-panel active" id="paket-sekolah">
+                    <div class="package-card">
+                        <div class="pkg-image">
+                            <img src="images/activity_herbal.png" alt="Paket Anak Sekolah Herbal Insani">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 120.000</strong>
+                                <span>/ Siswa</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Paket Edukasi</span>
+                                <h2>Paket Anak Sekolah</h2>
+                                <p class="text-muted"><i class="ph-fill ph-info"></i> Info: Minimal 30 Orang, Maksimal 500 Orang.</p>
+                            </div>
+                            
+                            <hr class="divider">
+                            
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas Lengkap Lintas Alam:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Tiket Masuk Taman Herbal</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Saung & Audio</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Banner (Bahan Ceria & Warna)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Instruktur Edukasi Berpengalaman (Menyesuaikan Usia P/A/TK/SD)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Pengenalan Tanaman Herbal & Praktik Membuat Obat</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Pulang Membawa Hasil Praktik (Pot & Tanaman)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Makan Siang Lengkap (Nasi, Lauk, Minum)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3>Fasilitas Ekstra & Wahana:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Arena Bebek Air</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Permainan Panahan Khusus Anak</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Praktik Memandikan Kerbau (Tergantung usia/kondisi)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Permainan Bakiak Raksasa / Egrang</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Tangkap Ikan & Bawa Pulang (<small>Syarat wajib pakai baju celana & tidak takut kotor</small>)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Berenang di Kolam Ceria (<small>Pakaian Renang / Baju Bebas Sopan</small>)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-large btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Reservasi Kuota Sekolah Ini</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Perorangan -->
+                <div class="tab-panel" id="paket-individu">
+                    <div class="package-card">
+                        <div class="pkg-image">
+                            <!-- Menggunakan gambar temporary yang sudah ada dari project -->
+                            <img src="images/hero_bg.png" alt="Paket Perorangan">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 30.000</strong>
+                                <span>/ Orang</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge" style="background-color: var(--accent); color: var(--text-main);">Promo </span>
+                                <h2>Tiket Masuk Perorangan</h2>
+                                <p class="text-muted"><i class="ph-fill ph-info"></i> Harga berlaku sama untuk Weekday (Senin - Jumat) & Weekend (Sabtu - Minggu). Anak usia 3 tahun ke atas bayar penuh.</p>
+                            </div>
+                            
+                            <hr class="divider">
+                            
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas Free (Termasuk Tiket):</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Kolam Renang Waterpark</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Wahana Balok Tangkas</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Playground Bermain Anak</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Masjid dan Musholla Bersih</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Lapangan Bermain Terbuka</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Toilet & Spot Selfie Menarik</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3>Sarana Bermain Tambahan (Disewakan):</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-money"></i> Memanah: Rp 10.000 (7 Anak Panah)</li>
+                                        <li><i class="ph-fill ph-money"></i> Memberi Makan Kelinci / Domba: Rp 10.000 / Rp 5.000</li>
+                                        <li><i class="ph-fill ph-money"></i> Terapi Ikan: Rp 10.000 (30 Menit)</li>
+                                        <li><i class="ph-fill ph-money"></i> Wahana: Becak (Rp 10k), Bebek Air (Rp 20k)</li>
+                                        <li><i class="ph-fill ph-money"></i> Wahana Sungai: Kano (Rp 15k), Sepeda Air (Rp 15k)</li>
+                                        <li><i class="ph-fill ph-money"></i> Berkuda Hias: Rp 20.000</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-large btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Beli Tiket Perorangan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Family Gathering -->
+                <div class="tab-panel" id="paket-gathering">
+                    <div class="package-card">
+                        <div class="pkg-image">
+                            <img src="images/activity_berkuda.png" alt="Paket Family Gathering">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 150.000</strong>
+                                <span>/ Orang</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Spesial Rombongan Dewasa</span>
+                                <h2>Paket Keluarga & Family Gathering</h2>
+                                <p class="text-muted"><i class="ph-fill ph-info"></i> Info: Harga di atas khusus untuk minimal pemesanan 50 Orang. Fasilitas lengkap untuk acara kebersamaan.</p>
+                            </div>
+                            
+                            <hr class="divider">
+                            
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Konsumsi & Tempat:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Tiket Masuk Taman Wisata HMI</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Aula Utama / Tenda Dome Kumpul Acara</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Snack Tradisional Welcome (Kue & Minum)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Makan Siang Prasmanan Ala Sunda/Nusantara</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Spanduk Kegiatan Banner Selamat Datang</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3>Hiburan & Fun Games Acara:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Master of Ceremony (MC) Interaktif</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Sound System Standard Orgen Tunggal (+Penyanyi)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Ice Breaking & Fun Games Keluarga Menyenangkan</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Peralatan Lomba (Tarik Tambang, Bakiak, Balap Karung)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kuis Berhadiah Menarik Disediakan (Hadiah Utama Opsional)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Akses Bebas Mandi di Kolam Renang</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-large btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Daftar Acara Gathering</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Paket Camp -->
+                <div class="tab-panel" id="paket-camp">
+                    <div class="package-card">
+                        <div class="pkg-image">
+                            <img src="images/hero_bg.png" alt="Paket Camping">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 175.000</strong>
+                                <span>/ Pax</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Pengalaman Bermalam Edukatif</span>
+                                <h2>Paket Camping Anak Sekolah & Keluarga</h2>
+                                <p class="text-muted"><i class="ph-fill ph-info"></i> Info: Minimum booking 30 Orang. Check-in 14:00 WIB, Check-out 10:00 WIB. Harga spesial anak sekolah / organisasi.</p>
+                            </div>
+                            <hr class="divider">
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas Paket Termasuk:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Tiket Masuk</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Tenda Dome Matras</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Welcome Drink & Snack Box (Kue, Teh, Air Mineral)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Makan 3x (Sore, Malam, Pagi)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Api Unggun & Fun Games</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Senam Pagi & Ice Breaking (Malam Hari)</li>
+                                    </ul>
+                                    <br>
+                                    <h4 style="color: var(--primary);">Harga Paket Non Makanan / Lahan Saja:</h4>
+                                    <p class="text-muted"><strong>Rp 75.000/Orang.</strong> (Ketentuan: Tiket Masuk Area, Sewa lahan buka tenda, Akses Kolam Renang 07.00 - 16.00, Kapasitas Tenda/Lahan, Listrik). Bawa tenda sendiri.</p>
+                                </div>
+                                <div>
+                                    <ul class="check-list" style="margin-top: 48px;">
+                                        <li><i class="ph-fill ph-check-circle"></i> Toilet & Mushola</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Area Berenang</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Listrik Terbatas (Colokan HP)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Security 24 Jam</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-large btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Pesan Jadwal Camping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Sewa Resort -->
+                <div class="tab-panel" id="paket-resort">
+                    
+                    <div class="text-center" style="margin-bottom: 40px;">
+                        <h2 style="color: var(--primary-dark);">Pilihan Tipe Resort</h2>
+                        <p class="text-muted">Desain resort etnik dengan kenyamanan modern. Sesuaikan dengan jumlah anggota keluarga Anda.</p>
+                    </div>
+
+                    <!-- Resort 1, 2, 5 -->
+                    <div class="package-card package-card--horizontal" style="margin-bottom: 32px;">
+                        <div class="pkg-image">
+                            <!-- Temporary Image -->
+                            <img src="images/hero_bg.png" alt="Resort 1, 2, 5">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 350.000</strong>
+                                <span>/ Malam</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Kapasitas: 6-7 Orang</span>
+                                <h2>Resort 1, 2, 5</h2>
+                                <p class="text-muted"><i class="ph-fill ph-clock"></i> Check In: 14.00 WIB - Check Out: 12.00 WIB</p>
+                            </div>
+                            <hr class="divider">
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Free 3 Tiket Masuk</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free 3 Sarapan (Nasi Goreng + Teh/Kopi)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kasur Bawah / Karpet</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Dispenser Panas Dingin</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kipas Angin</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="check-list" style="margin-top: 32px;">
+                                        <li><i class="ph-fill ph-check-circle"></i> Toilet Duduk</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Berenang</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> TV</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Wahana Rakit Sampan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Pesan Tipe Ini</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resort 4, 6, 8 -->
+                    <div class="package-card package-card--horizontal" style="margin-bottom: 32px;">
+                        <div class="pkg-image">
+                            <!-- Temporary Image -->
+                            <img src="images/activity_herbal.png" alt="Resort 4, 6, 8">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 380.000</strong>
+                                <span>/ Malam</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Kapasitas: 6-7 Orang</span>
+                                <h2>Resort 4, 6, 8</h2>
+                                <p class="text-muted"><i class="ph-fill ph-clock"></i> Check In: 14.00 WIB - Check Out: 12.00 WIB</p>
+                            </div>
+                            <hr class="divider">
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Free 4 Tiket Masuk</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free 4 Sarapan (Nasi Gor + Teh/Kopi)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kasur Bawah / Karpet</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kipas Angin</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> TV</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="check-list" style="margin-top: 32px;">
+                                        <li><i class="ph-fill ph-check-circle"></i> Galon Panas Dingin</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Toilet Duduk & Alat Mandi (Sabun)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Berenang</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Rakit/Sampan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Pesan Tipe Ini</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resort 7, 11, 12, 13 -->
+                    <div class="package-card package-card--horizontal" style="margin-bottom: 32px;">
+                        <div class="pkg-image">
+                            <!-- Temporary Image -->
+                            <img src="images/hero_bg.png" alt="Resort 7, 11, 12, 13">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 600.000</strong>
+                                <span>/ Malam</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Kapasitas: 8 Orang</span>
+                                <h2>Resort 7, 11, 12, 13</h2>
+                                <p class="text-muted"><i class="ph-fill ph-clock"></i> Check In: 14.00 WIB - Check Out: 12.00 WIB</p>
+                            </div>
+                            <hr class="divider">
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Free 4 Tiket Masuk & 4 Sarapan</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kasur & AC (Air Conditioner)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> TV Lengkap</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Dispenser Panas Dingin</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Lemari Pakaian & Meja Rias</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="check-list" style="margin-top: 32px;">
+                                        <li><i class="ph-fill ph-check-circle"></i> Toilet Duduk</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Berenang</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free WiFi</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Rakit / Sampan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Pesan Tipe Ini</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resort 8 dan 9 -->
+                    <div class="package-card package-card--horizontal">
+                        <div class="pkg-image">
+                            <!-- Temporary Image -->
+                            <img src="images/activity_herbal.png" alt="Resort 8 dan 9">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 800.000</strong>
+                                <span>/ Malam</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Kapasitas: 12 Orang</span>
+                                <h2>Resort 8 dan 9</h2>
+                                <p class="text-muted"><i class="ph-fill ph-clock"></i> Check In: 14.00 WIB - Check Out: 12.00 WIB</p>
+                            </div>
+                            <hr class="divider">
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Free 4 Tiket Masuk & 4 Sarapan</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> AC & TV Lengkap</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Dispenser Panas Dingin</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kasur Springbed Kualitas Baik (3 Bed)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Kamar Mandi Dalam 2 (Toilet Duduk)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="check-list" style="margin-top: 32px;">
+                                        <li><i class="ph-fill ph-check-circle"></i> Ruang Keluarga Besar</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Berenang</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free Rakit / Sampan</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Free WiFi</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pkg-actions">
+                                <a href="kontak.html" class="btn-primary btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Pesan Tipe Ini</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Tab Panel: Sewa Saung -->
+                <div class="tab-panel" id="paket-saung">
+                    <div class="package-card">
+                        <div class="pkg-image">
+                            <!-- Temporary Image for Saung -->
+                            <img src="images/hero_bg.png" alt="Sewa Saung dan Aula">
+                            <div class="pkg-price-badge">
+                                <strong>Rp 200.000</strong>
+                                <span>/ Saung (20 Orang)</span>
+                            </div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-header">
+                                <span class="badge">Sewa Lahan Duduk Bersama</span>
+                                <h2>Persewaan Saung dan Aula Mungil</h2>
+                                <p class="text-muted"><i class="ph-fill ph-info"></i> Info: Harga di atas adalah contoh salah satu saung. Kami memiliki saung ukuran 20, 30, sampai 50 orang dengan tarif bervariasi.</p>
+                            </div>
+                            <hr class="divider">
+                            <div class="pkg-details-grid">
+                                <div>
+                                    <h3>Fasilitas Persewaan Saung Dasar:</h3>
+                                    <ul class="check-list">
+                                        <li><i class="ph-fill ph-check-circle"></i> Saung Bambu Kapasitas 20 Orang (Rp 200rb)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Fasilitas Kipas Angin Gantung (2 Buah)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Akses Stop Kontak (Colokan Listrik)</li>
+                                        <li><i class="ph-fill ph-check-circle"></i> Dekat Menghadap Danau / Wahana Kolam</li>
+                                    </ul>
+                                    <p class="text-muted"><br><small><i>Harga SAUNG belum termasuk paket makan atau tiket masuk per kepala pengunjung.</i></small></p>
+                                </div>
+                                <div>
+                                     <div class="coming-soon-box" style="padding: 24px;">
+                                        <h3>Tipe Saung & Kapasitas Lainnya</h3>
+                                        <p>Silakan hubungi WhatsApp kami untuk menanyakan harga Saung Kapasitas 30 Orang, Aula Sedang (50 Orang), ataupun Aula Utama kapasitas >100 Orang untuk acara syukuran Anda.</p>
+                                        <br>
+                                        <a href="kontak.html" class="btn-primary btn-full"><i class="ph-fill ph-whatsapp-logo"></i> Tanya Harga Saung</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo text-white">
+                        <i class="ph-fill ph-leaf"></i> Herbal Insani
+                    </a>
+                    <p style="opacity: 0.8; margin-top: 24px;">Taman wisata edutainment terkemuka yang memadukan keindahan alam dengan edukasi herbal untuk keluarga dan anak-anak.</p>
+                                        <div class="social-links" style="margin-top: 24px;">
+                        <a href="https://instagram.com" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="ph-fill ph-youtube-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Jelajahi</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="paket.html">Pilihan Paket</a></li>
+                        <li><a href="katalog.html">Katalog Herbal</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <ul class="contact-list">
+                        <li><i class="ph-fill ph-map-pin"></i> <span>Jl. Rawakalong, Pengasinan, Kec. Sawangan, Kota Depok, Jawa Barat.</span></li>
+                        <li><i class="ph-fill ph-envelope-simple"></i> <span>info@herbalinsani.com</span></li>
+                        <li><i class="ph-fill ph-phone"></i> <span>0821-2544-4577 (WA)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Taman Wisata Herbal Insani. All rights reserved. Redesigned with ❤️.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
