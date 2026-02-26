@@ -187,17 +187,18 @@ a {
 }
 
 .logo {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--text-main);
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
-.logo i {
-  color: var(--primary-light);
-  font-size: 2rem;
+.logo img {
+  height: 50px;
+  width: auto;
+  transition: var(--transition);
+}
+
+.navbar.scrolled .logo img {
+  height: 40px;
 }
 
 .navbar.scrolled .logo {
