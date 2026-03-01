@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Penggunaan Plugin Herbal Core</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --primary: #2b7a0b;
+            --primary-light: #5bb318;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light: #f3f4f6;
+            --white: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: var(--white);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 30px 20px;
+        }
+
+        .sidebar-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .nav-section {
+            margin-bottom: 20px;
+        }
+
+        .nav-title {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-left: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-title:hover {
+            color: var(--primary);
+        }
+
+        .nav-list {
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .has-submenu {
+            position: relative;
+        }
+        
+        .submenu-toggle {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            cursor: pointer;
+            color: var(--gray);
+            transition: transform 0.3s;
+            padding: 4px;
+        }
+
+        .submenu-toggle:hover {
+            color: var(--primary);
+        }
+
+        .collapsed {
+            display: none !important;
+        }
+
+        .icon-rotate {
+            transform: rotate(-90deg);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 12px;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .nav-link:hover {
+            background: #f0fdf4;
+            color: var(--primary);
+        }
+
+        .scroll-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: #f0fdf4;
+            color: var(--primary) !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600 !important;
+            border: 1px solid #bbf7d0;
+            transition: all 0.2s;
+        }
+
+        .scroll-link:hover {
+            background: #dcfce7;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 300px;
+            padding: 40px 60px;
+            max-width: 1000px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 30px 0 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            margin: 20px 0 10px;
+            color: var(--dark);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            color: #4b5563;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Elements */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            color: #92400e;
+        }
+
+        .shortcode-box {
+            background: #1f2937;
+            color: #10b981;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin: 10px 0 20px;
+            border: 1px solid #374151;
+        }
+
+        .dummy-img {
+            background: #e5e7eb;
+            border: 2px dashed #9ca3af;
+            border-radius: 12px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .dummy-img i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #9ca3af;
+        }
+
+        .doc-img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin: 20px 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--light);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <i class="ph-fill ph-leaf"></i> Taman Herbal
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title" onclick="toggleSection(this)"><span>Persiapan</span> <i class="ph ph-caret-down transition-icon"></i></div>
+            <ul class="nav-list">
+                <li><a href="#pendahuluan" class="nav-link">Pendahuluan & Prasyarat</a></li>
+                <li><a href="#instalasi" class="nav-link">Instalasi Plugin</a></li>
+                <li><a href="#buat-halaman" class="nav-link">Cara Membuat Halaman</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title" onclick="toggleSection(this)"><span>Taman Herbal Options</span> <i class="ph ph-caret-down transition-icon"></i></div>
+            <ul class="nav-list">
+                <li class="has-submenu">
+                    <a href="#opt-global" class="nav-link">1. Pengaturan Global</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#global-header" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- A. Header (Navigasi)</a></li>
+                        <li><a href="#global-footer" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- B. Footer & Kontak</a></li>
+                        <li><a href="#global-sosmed" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- C. Sosial Media</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#opt-beranda" class="nav-link">2. Pengaturan Beranda</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#beranda-hero" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- A. Hero Banner</a></li>
+                        <li><a href="#beranda-stats" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- B. Info Singkat</a></li>
+                        <li><a href="#beranda-bento" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- C. Mengapa Kami?</a></li>
+                        <li><a href="#beranda-artikel" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- D. Wahana & Artikel</a></li>
+                        <li><a href="#beranda-promo" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- E. Banner Promo</a></li>
+                        <li><a href="#beranda-fasilitas" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- F. Fasilitas Area</a></li>
+                        <li><a href="#beranda-testimoni" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- G. Testimoni</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#opt-tentang" class="nav-link">3. Tentang Kami</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#tentang-hero" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- A. Hero Banner</a></li>
+                        <li><a href="#tentang-konsep" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- B. Seksi Konsep</a></li>
+                        <li><a href="#tentang-misi" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- C. Misi Edukasi</a></li>
+                        <li><a href="#tentang-wahana" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- D. Fasilitas Wahana</a></li>
+                        <li><a href="#tentang-cta" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- E. Banner CTA</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#opt-paket" class="nav-link">4. Pengaturan Paket</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#cpt-paket" class="nav-link" style="padding: 4px 12px; color: var(--primary); font-weight: 600;">&rarr; Kelola Data CPT</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#opt-galeri" class="nav-link">5. Pengaturan Galeri</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#galeri-hero" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- 1. Header Banner</a></li>
+                        <li><a href="#galeri-konten" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- 2. Info Konten Otomatis</a></li>
+                        <li><a href="#galeri-cta" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- 3. Call To Action</a></li>
+                        <li><a href="#cpt-galeri" class="nav-link" style="padding: 4px 12px; color: var(--primary); font-weight: 600;">&rarr; Kelola Data CPT</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#opt-katalog" class="nav-link">6. Pengaturan Katalog</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#katalog-hero" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- 1. Header Banner</a></li>
+                        <li><a href="#cpt-katalog" class="nav-link" style="padding: 4px 12px; color: var(--primary); font-weight: 600;">&rarr; Kelola Data CPT</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#opt-kontak" class="nav-link">7. Pengaturan Kontak</a>
+                    <i class="ph ph-caret-down submenu-toggle transition-icon icon-rotate" onclick="toggleSubmenu(this)"></i>
+                    <ul class="sub-list collapsed" style="list-style: none; padding-left: 15px; font-size: 0.85rem; margin-bottom: 5px;">
+                        <li><a href="#kontak-hero" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- A. Hero Banner</a></li>
+                        <li><a href="#kontak-info" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- B. Info Kontak (Kiri)</a></li>
+                        <li><a href="#kontak-form" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- C. Form Pesan (Kanan)</a></li>
+                        <li><a href="#kontak-maps" class="nav-link" style="padding: 4px 12px; color: var(--gray);">- D. Peta Lokasi (Bawah)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title" onclick="toggleSection(this)"><span>Sistem Input (CPT)</span> <i class="ph ph-caret-down transition-icon"></i></div>
+            <ul class="nav-list">
+                <li><a href="#cpt-paket" class="nav-link">Paket Wisata</a></li>
+                <li><a href="#cpt-katalog" class="nav-link">Katalog Herbal</a></li>
+                <li><a href="#cpt-galeri" class="nav-link">Galeri Foto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- SECTION: Pendahuluan -->
+        <section id="pendahuluan">
+            <h2><i class="ph-fill ph-rocket-launch"></i> Pendahuluan & Prasyarat</h2>
+            <p>Selamat datang di dokumentasi resmi plugin <strong>Herbal Core v1.2.1</strong>. Plugin ini dirancang eksklusif untuk Taman Wisata Herbal Insani untuk mengelola seluruh front-end website secara instan dan terkontrol melalui Shortcode.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-info" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Rekomendasi Tema (Tidak Wajib)</strong><br>
+                    Kami menyarankan penggunaan tema <strong>Hello Elementor</strong> yang ringan. Anda bebas menggunakan tema apa saja. Namun, jika ada desain yang bertabrakan dengan bawaan tema Anda, silakan sesuaikan melalui menu <em>Tampilan > Sesuaikan > CSS Tambahan</em>.
+                </div>
+            </div>
+
+            <h3>Prasyarat Plugin</h3>
+            <p>Pastikan plugin gratis berikut sudah terinstall di WordPress Anda sebelum mulai:</p>
+            <ul>
+                <li><strong>Elementor Website Builder</strong> (Wajib, untuk mengatur struktur halaman menggunakan template Canvas).</li>
+            </ul>
+            <img src="images/doc_prasyarat_elementor.png" alt="Plugin Elementor Website Builder" class="doc-img" style="max-width: 600px;">
+
+            <ul>
+                <li><strong>Ultimate Addons for Elementor</strong> (Opsional, sangat disarankan jika ingin melakukan custom Header/Footer bawaan tema. Plugin ini buatan *Brainstorm Force*).</li>
+            </ul>
+            <img src="images/doc_prasyarat_addons.png" alt="Plugin Ultimate Addons for Elementor" class="doc-img" style="max-width: 600px;">
+        </section>
+
+        <!-- SECTION: Instalasi -->
+        <section id="instalasi">
+            <h2><i class="ph-fill ph-download-simple"></i> Instalasi Plugin & Setup</h2>
+            <ol>
+                <li>Buka menu <strong>Plugin > Tambah Baru > Unggah Plugin</strong>.</li>
+                <li>Pilih file <code>herbal-core-v1.2.1.zip</code> lalu klik <strong>Instal Sekarang</strong>.</li>
+                <li>Klik <strong>Aktifkan Plugin</strong>.</li>
+                <li>Buka menu <strong>Pengaturan > Permalink</strong> (Tautan Permanen). Pastikan tersetting ke <strong>Nama Tulisan (Post name)</strong>. Klik Simpan Perubahan.</li>
+            </ol>
+
+            <img src="images/doc_upload_plugin.png" alt="Tampilan Upload Plugin Baru" class="doc-img">
+        </section>
+
+        <!-- SECTION: Membuat Halaman -->
+        <section id="buat-halaman">
+            <h2><i class="ph-fill ph-file-plus"></i> Cara Membuat Halaman Front-End</h2>
+            <p>Sistem ini tidak menggunakan Elementor Builder secara manual. Anda cukup membuat halaman dan memasukkan shortcode.</p>
+            
+            <ol>
+                <li>Pilih menu <strong>Laman > Tambah Baru</strong>.</li>
+                <li>Beri judul halaman, misalnya "Beranda".</li>
+                <li><strong>Mengatur Template Halaman:</strong> Anda wajib menggunakan template <strong>Elementor Canvas</strong> agar tema bawaan tidak merusak desain. Ada dua cara mengaturnya:
+                    <ul>
+                        <li><strong>Cara 1 (Gutenberg):</strong> Pada panel sebelah kanan (tab Laman), cari bagian <strong>Template</strong> lalu pilih <strong>Elementor Canvas</strong>. <em>(Catatan: Terkadang pilihan ini disembunyikan oleh tema aktif).</em></li>
+                        <li><strong>Cara 2 (Elementor):</strong> Jika cara pertama gagal, klik tombol biru atas <strong>Sunting dengan Elementor</strong>. Di panel kiri bawah Elementor, klik ikon <strong>Pengaturan (Roda Gigi)</strong>, pada opsi <strong>Page Layout</strong> pilih <strong>Elementor Canvas</strong>.</li>
+                    </ul>
+                </li>
+                <li>Ketik shortcode yang sesuai di area editor teks (atau gunakan widget *Shortcode* jika via Elementor). Contoh untuk Beranda:</li>
+            </ol>
+            
+            <div class="shortcode-box">[herbal_homepage]</div>
+            
+            <p>Klik <strong>Terbitkan (Publish)</strong>. Status halaman kini otomatis akan terhubung dengan fitur deteksi di menu Admin <em>Taman Herbal > Selamat Datang</em>!</p>
+        </section>
+
+        <!-- SECTION: Theme Options (Global) -->
+        <section id="opt-global">
+            <h2><i class="ph-fill ph-globe"></i> 1. Pengaturan Global (Taman Herbal)</h2>
+            <p>Semua settingan teks, gambar, dan kontakWebsite diatur terpusat di menu <strong>Taman Herbal</strong> yang ada di panel kiri admin WordPress Anda.</p>
+            
+            <div style="display:flex; gap:20px; align-items:center; margin-bottom: 20px; flex-wrap: wrap;">
+                <img src="images/doc_sidebar_menu.png" alt="Menu Sidebar Taman Herbal" class="doc-img" style="max-width: 250px; margin:0;">
+                <div style="flex: 1; min-width: 300px;">
+                   <p>Akses semua menu pengaturan ini melalui sidebar WordPress <strong>Taman Herbal &gt; Theme Options</strong> (atau ke menu turunan lainnya sesuai kebutuhan).</p>
+                </div>
+            </div>
+
+            <div class="alert alert-info" style="margin-bottom: 30px;">
+                <i class="ph-fill ph-info" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Tips Penting: Mengambil URL Gambar</strong><br>
+                    Banyak pengaturan ke depan yang meminta Anda untuk memasukkan "URL Gambar" (contoh: Background Hero). Caranya:
+                    <ol style="margin: 10px 0 15px 15px;">
+                        <li>Buka menu <strong>Media &gt; Pustaka</strong> di tab browser baru.</li>
+                        <li>Klik *Upload* atau pilih gambar yang sudah ada.</li>
+                        <li>Pada panel sebelah kanan, temukan kolom URL Berkas dan klik tombol biru <strong>"Salin URL ke clipboard"</strong>.</li>
+                        <li><em>Paste</em> (Tempel) URL tersebut ke dalam kolom pengaturan Theme Options.</li>
+                    </ol>
+                    <img src="images/doc_cara_url_gambar.png" alt="Cara Menyalin URL Gambar di Media Library" class="doc-img" style="max-width: 600px; margin:0;">
+                </div>
+            </div>
+
+            <div class="alert alert-info" style="margin-bottom: 30px;">
+                <i class="ph-fill ph-magnifying-glass" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Tips Penting: Mencari Label Ikon Phosphor</strong><br>
+                    Tema Taman Herbal menggunakan perpustakaan ikon lengkap dari Phosphor. Cara mencari nama yang benar:
+                    <ol style="margin: 10px 0 15px 15px;">
+                        <li>Buka halaman resminya di <a href="https://phosphoricons.com/" target="_blank" style="color:#2196F3;text-decoration:underline;"><strong>phosphoricons.com</strong></a>.</li>
+                        <li>Gunakan kolom pencarian di atas web-nya (ketiklah kata kunci dalam bahasa inggris, misal: <em>camera</em>, <em>users</em>, <em>tent</em>).</li>
+                        <li>Klik pada ikon yang diinginkan dari hasil pencarian (Contoh gambar: <code>address-book-tabs</code>).</li>
+                        <li>Sebuah menu hitam akan muncul di bawah. Pastikan tab <strong>"Web"</strong> terpilih aktif.</li>
+                        <li>Anda akan melihat kode HTML (seperti <code>&lt;i class="ph ph-address-book-tabs"&gt;&lt;/i&gt;</code>). Cukup salin <strong>bagian nama class-nya saja</strong> (contoh: <code>ph-address-book-tabs</code>).</li>
+                        <li><em>Paste</em> (Tempel) nama class tersebut ke dalam kolom pengaturan Class Icon.</li>
+                    </ol>
+                    <img src="images/doc_cara_icon_phosphor.png" alt="Cara Mencari Label Ikon Phosphor Web" class="doc-img" style="max-width: 600px; margin:0;">
+                </div>
+            </div>
+
+            <h3>Tab Global (Header, Footer & Kontak Umum)</h3>
+            <p>Tab ini adalah inti pengaturan yang akan muncul di semua halaman.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Panggil Desain Global:</strong><br>
+                    Header bawaan plugin dapat dipanggil dengan shortcode <code>[herbal_navigasi]</code>. Footer bawaan plugin dapat dipanggil dengan <code>[herbal_footer]</code>. <br>
+                    <em>*Catatan: Jika memakai plugin Elementor Header & Footer Builder, opsi teks dan info kontak di tab ini tetap akan tersambung asalkan Anda menggunakan widget/shortcode kontak yang tepat di Elementor.</em>
+                </div>
+            </div>
+
+            <h4 id="global-header">A. Pengaturan Header (Navigasi)</h4>
+            <ul>
+                <li><strong>Pilih Menu Navigasi:</strong> Pilih menu WordPress yang dimunculkan di Header atas. *(Buat dulu menunya di Tampilan > Menu)*.</li>
+                <li><strong>Tombol Aksi (Header):</strong> Input label CTA (contoh: "Order Tiket") beserta link destinasinya.</li>
+            </ul>
+            <img src="images/doc_global_header.png" alt="Pengaturan Header" class="doc-img">
+
+            <h4 id="global-footer">B. Pengaturan Footer & Kontak Utama</h4>
+            <ul>
+                <li><strong>Profil Singkat (Footer):</strong> Deskripsi singkat kawasan wisata.</li>
+                <li><strong>Tahun Berdiri & Hak Cipta:</strong> Mengatur copyright paling bawah.</li>
+            </ul>
+            <img src="images/doc_global_footer.png" alt="Pengaturan Footer" class="doc-img">
+
+            <ul>
+                <li><strong>Daftar Informasi Kontak Utama:</strong> Gunakan repeater untuk menambah Alamat, Email, atau WhatsApp. Bebas pilih ikon yang sesuai.</li>
+            </ul>
+            <img src="images/doc_global_kontak.png" alt="Pengaturan Daftar Kontak" class="doc-img">
+
+            <h4 id="global-sosmed">C. Pengaturan Sosial Media</h4>
+            <ul>
+                <li><strong>Sosial Media (Repeater):</strong> Tambahkan link platform sosial media. Sistem akan memformat URL otomatis berdasarkan <em>username</em>, atau masukkan URL utuh.</li>
+            </ul>
+            <img src="images/doc_global_sosmed.png" alt="Pengaturan Sosial Media" class="doc-img">
+        </section>
+
+        <!-- SECTION: Theme Options (Beranda) -->
+        <section id="opt-beranda">
+            <h2><i class="ph-fill ph-house"></i> 2. Pengaturan Beranda</h2>
+            <p>Pada tab ini, Anda mengatur keseluruhan konten halaman depan Taman Wisata Herbal Insani.</p>
+
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Memanggil Halaman Utama:</strong><br>
+                    Buat Laman (Page) baru dengan template <em>Elementor Canvas</em>, lalu ketikkan shortcode <code>[herbal_homepage]</code>.
+                </div>
+            </div>
+            
+            <h4 id="beranda-hero">A. Teks Banner (Hero Section)</h4>
+            <ul>
+                <li><strong>Background, Headline & Deskripsi:</strong> Mengatur teks penyambutan pertama.</li>
+                <li><strong>Tombol Aksi (CTA):</strong> Dapat mengatur dua jenis tombol (Hijau Solid dan Transparan). Biarkan kosong jika tidak ingin menampilkan tombol.</li>
+            </ul>
+            <img src="images/doc_beranda_hero.png" alt="Pengaturan Hero Beranda" class="doc-img">
+
+            <h4 id="beranda-stats">B. Info Singkat (Quick Stats)</h4>
+            <p>Mengatur 4 kotak informasi ringkas di bawah gambar hero. Pilih Ikon dari daftar dropdown, masukkan Judul (contoh: 10+ Wahana), dan Subjudul penjabaran singkat.</p>
+            <img src="images/doc_beranda_stats.png" alt="Pengaturan Info Singkat" class="doc-img">
+
+            <h4 id="beranda-bento">C. Mengapa Kami? (Bento Grid)</h4>
+            <p>Seksi berbentuk 3 kartu tidak simetris (bento). Anda harus mengisi Teks Label (Badge), Headline Utama, dan Deskripsi. Untuk setiap kartu, bebas pilih ikon khusus. Kartu Ke-1 (Kartu Utama) juga bisa diberi Background Image URL khusus.</p>
+            <img src="images/doc_beranda_bento.png" alt="Pengaturan Bento Grid" class="doc-img">
+
+            <h4 id="beranda-artikel">D. Wahana & Aktivitas (Sorotan Artikel)</h4>
+            <ul>
+                <li><strong>Header & Tombol:</strong> Label Badge, Headline Utama, dan navigasi (Link ke halaman artikel penuh).</li>
+                <li><strong>Sumber Data Artikel:</strong> Anda bisa memilih tipe artikel "Postingan Terbaru" untuk ditampilkan secara otomatis pada grid depan.</li>
+            </ul>
+            <img src="images/doc_beranda_artikel.png" alt="Pengaturan Sorotan Artikel Beranda" class="doc-img">
+
+            <h4 id="beranda-promo">E. Banner Promo Edukatif</h4>
+            <p>Pengaturan blok banner promosi hijau menyala. Anda dapat mengatur Teks Promo, Link Tombol, serta Angka Diskon untuk "Stempel Stiker Bulat" bewarna kuning (contoh: "-20%").</p>
+            <img src="images/doc_beranda_promo.png" alt="Pengaturan Banner Promo" class="doc-img">
+
+            <h4 id="beranda-fasilitas">F. Fasilitas Kenyamanan (Bisa Ditambah)</h4>
+            <p>Atur blok daftar fasilitas yang ada di area promosi tiket atau halaman depan. Gunakan tombol <strong>+ Tambah Fasilitas Baru</strong> untuk mengisi ikon, dan nama fasilitas (misal: "Musholla Luas" atau "Toilet Bersih"). Jika ingin menghapus, cukup klik tombol <strong>Hapus</strong> bewarna merah di ujung kanannya.</p>
+            <img src="images/doc_beranda_fasilitas.png" alt="Pengaturan Fasilitas Kenyamanan" class="doc-img">
+
+            <h4 id="beranda-testimoni">G. Kata Mereka Tentang Kami (Testimoni)</h4>
+            <p>Masukkan ulasan atau review pengunjung untuk meningkatkan kepercayaan. Anda bisa mengatur <strong>Rating Bintang (1-5)</strong>, teks isi Testimoni, Nama Reviewer, dan Tipe/Jabatan mereka. Terdapat tombol <strong>Hapus</strong> merah untuk menghilangkan baris testimoni tertentu.</p>
+            <img src="images/doc_beranda_testimoni.png" alt="Pengaturan Testimoni" class="doc-img">
+        </section>
+
+        <!-- SECTION: Theme Options (Tentang Kami) -->
+        <section id="opt-tentang">
+            <h2><i class="ph-fill ph-info"></i> 3. Pengaturan Tentang Kami</h2>
+            <p>Pada tab ini, Anda mengatur keseluruhan konten halaman yang menampilkan identitas dan profil Taman Wisata Herbal Insani.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Memanggil Halaman Tentang Kami:</strong><br>
+                    Buat Laman (Page) baru dengan template <em>Elementor Canvas</em> (atau tema bawaan), lalu ketikkan shortcode <code>[herbal_tentang]</code>.
+                </div>
+            </div>
+            
+            <h4 id="tentang-hero">A. Hero Banner (Gambar Atas)</h4>
+            <p>Atur gambar latar belakang (Background Image URL), teks label (Badge), Headline utama, dan deskripsi singkat. Biarkan URL gambar kosong jika ingin menggunakan gambar default.</p>
+            <img src="images/doc_tentang_hero.png" alt="Pengaturan Hero Banner Tentang Kami" class="doc-img">
+
+            <h4 id="tentang-konsep">B. Seksi Konsep (Kiri: Gambar, Kanan: Teks)</h4>
+            <p>Isi narasi tentang konsep rekreasi edukatif. Anda perlu memasukkan URL Gambar dari Media Library, Badge Label, Judul H2, serta 2 paragraf penjelasan.</p>
+            <img src="images/doc_tentang_konsep.png" alt="Pengaturan Seksi Konsep" class="doc-img">
+
+            <h4 id="tentang-misi">C. Seksi Misi Edukasi (Kiri: Teks, Kanan: Gambar)</h4>
+            <p>Seksi ini kebalikan dari seksi konsep. Anda bisa mengisi URL Gambar, Label, Judul, sebuah Paragraf penjelasan, dan juga <strong>Daftar Checklist Poin Edukasi</strong> menggunakan repeater khusus. Daftar edukasi tersebut akan otomatis ditampilkan dengan ikon centang di halaman web.</p>
+            <img src="images/doc_tentang_misi.png" alt="Pengaturan Misi Edukasi" class="doc-img">
+
+            <h4 id="tentang-wahana">D. Fasilitas & Wahana (2 Kolom)</h4>
+            <p>Menjelaskan daftar fasilitas umum dan wahana eksklusif menggunakan sistem repeater terkompartemenisasi. Tambahkan data fasilitas berulang melalui tombol "+ Tambah" pada kolom "Akses Fasilitas Umum (Kartu Kiri, Terang)" dan "Wahana Eksklusif (Kartu Kanan, Gelap)".</p>
+            <img src="images/doc_tentang_wahana.png" alt="Pengaturan Kolom Fasilitas dan Wahana" class="doc-img">
+
+            <h4 id="tentang-cta">E. Banner CTA Ajakan (Bawah Halaman)</h4>
+            <p>Blok promosi dan ajakan reservasi di akhir halaman Tentang Kami. Lengkapi field Headline, Deskripsi singkat, Label Tombol, dan URL Destinasi (biasanya ke halaman /kontak atau /paket).</p>
+            <img src="images/doc_tentang_cta.png" alt="Pengaturan Banner CTA Ajakan" class="doc-img">
+        </section>
+
+        <!-- SECTION: Theme Options (Paket) -->
+        <section id="opt-paket">
+            <h2><i class="ph-fill ph-ticket"></i> 4. Pengaturan Tab Paket Wisata</h2>
+            <p>Pengaturan ini khusus untuk desain *header/banner* bagian atas pada halaman daftar Paket Wisata. Sedangkan untuk merekayasa *Daftar Paket/Tiketnya*, dikelola tersendiri melalui <a href="#cpt-paket" class="scroll-link"><i class="ph-bold ph-link"></i> Sistem Menu CPT Paket Wisata</a>.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Memanggil Halaman Paket Wisata:</strong><br>
+                    Buat Laman (Page) baru dengan template <em>Elementor Canvas</em>, lalu ketikkan shortcode <code>[herbal_paket]</code>.
+                </div>
+            </div>
+
+            <h4 id="paket-hero">A. Hero Banner</h4>
+            <p>Anda dapat mengatur <strong>Background Image URL</strong>, <strong>Headline (H1)</strong>, dan <strong>Deskripsi Teks Pendek</strong> yang akan tampil tepat di bawah header halaman paket.</p>
+            <img src="images/doc_opt_paket_hero.png" alt="Pengaturan Tab Paket Wisata" class="doc-img">
+        </section>
+
+        <!-- SECTION: Theme Options (Galeri) -->
+        <section id="opt-galeri">
+            <h2><i class="ph-fill ph-images"></i> 5. Pengaturan Tab Galeri</h2>
+            <p>Pada tab ini, Anda mengatur konten statis (header dan banner ajakan) pada halaman Galeri Foto.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Memanggil Halaman Galeri:</strong><br>
+                    Buat Laman (Page) baru dengan template <em>Elementor Canvas</em>, lalu ketikkan shortcode <code>[herbal_galeri]</code>.
+                </div>
+            </div>
+
+            <h4 id="galeri-hero">A. Header / Hero Banner</h4>
+            <p>Bagian atas halaman Galeri. Anda dapat mengatur <strong>Background Image (URL)</strong> (Kosongkan untuk mengambil default), <strong>Teks Badge (Kecil)</strong>, <strong>Headline Utama (Warna Putih)</strong>, <strong>Headline Baris 2 (Warna Aksen kuning)</strong>, dan <strong>Deskripsi Pendek</strong> berisi teks perkenalan momen galeri.</p>
+            <img src="images/doc_opt_galeri_1.png" alt="Pengaturan Header Hero Banner Galeri" class="doc-img">
+
+            <h4 id="galeri-konten">B. Konten Galeri Foto</h4>
+            <p><strong>Info Penting:</strong> Foto-foto grid di halaman galeri dan data filter kategorinya diambil secara *otomatis* dari Submenu <strong>Galeri</strong> di navigasi kiri Taman Herbal. Silakan kelola di <a href="#cpt-galeri" class="scroll-link"><i class="ph-bold ph-link"></i> Menu Sistem CPT Galeri</a>.</p>
+            <img src="images/doc_opt_galeri_2.png" alt="Info Konten Galeri Foto Otomatis" class="doc-img">
+
+            <h4 id="galeri-cta">C. Call To Action (Banner Bawah)</h4>
+            <p>Blok promosi di area bawah Galeri. Atur <strong>Background Image (URL)</strong>, susunan <strong>Headline H2</strong> (Bisa menekan Enter untuk pindah baris teks), <strong>Deskripsi Pendek</strong>, dan isi kata-kata untuk <strong>Label Tombol</strong> beserta arah link tujuannya pada kolom <strong>URL Tombol</strong>.</p>
+            <img src="images/doc_opt_galeri_3.png" alt="Pengaturan Call To Action Banner Bawah" class="doc-img">
+        </section>
+        <!-- SECTION: Theme Options (Katalog) -->
+        <section id="opt-katalog">
+            <h2><i class="ph-fill ph-plant"></i> 6. Pengaturan Tab Katalog</h2>
+            <p>Pada tab ini Anda dapat mengatur teks *Header Banner* untuk Halaman Katalog. Namun untuk mengelola daftar tanaman herbal utamanya, Anda harus mengisinya melalui <a href="#cpt-katalog" class="scroll-link"><i class="ph-bold ph-link"></i> Sistem Menu CPT Katalog Herbal</a>.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Memanggil Halaman Katalog Herbal:</strong><br>
+                    Buat Laman (Page) baru dengan template <em>Elementor Canvas</em>, lalu ketikkan shortcode <code>[herbal_katalog]</code>.
+                </div>
+            </div>
+
+            <h4 id="katalog-hero">1. Header / Hero Banner & Konten</h4>
+            <p>Anda dapat mengatur <strong>Background Image (URL)</strong>, <strong>Headline Utama</strong> (Contoh: "Ensiklopedia TOGA"), dan <strong>Deskripsi Pendek</strong> yang akan tampil tepat di bawah header halaman katalog.</p>
+            <p><strong>Info Pencarian & Konten:</strong> Form pencarian di halaman frontend sudah terintegrasi dengan fungsi <em>real-time Javascript filter</em> secara otomatis, dan daftar tanaman di grid juga diambil dari <strong>Katalog Tanaman</strong> di sidebar navigasi. Anda tidak perlu mengaturnya secara manual di sini.</p>
+            <img src="images/doc_opt_katalog.png" alt="Pengaturan Tab Katalog" class="doc-img">
+        </section>
+
+        <!-- SECTION: Theme Options (Kontak) -->
+        <section id="opt-kontak">
+            <h2><i class="ph-fill ph-address-book"></i> 7. Pengaturan Tab Kontak</h2>
+            <p>Halaman ini merupakan tempat Anda mengatur seluruh rincian informasi dan *Call to Action* agar bisa dihubungi pengunjung, termasuk jalur komunikasi WhatsApp otomatis dan titik jemput *Google Maps*.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-code" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Memanggil Halaman Hubungi Kami:</strong><br>
+                    Buat Laman (Page) baru dengan template <em>Elementor Canvas</em>, lalu ketikkan shortcode <code>[herbal_kontak]</code>.
+                </div>
+            </div>
+
+            <h4 id="kontak-hero">A. Hero (Gambar Atas)</h4>
+            <p>Atur gambar spanduk *header*. Isikan <strong>Background Image (URL)</strong>, <strong>Headline Utama</strong> (Contoh: "Hubungi Tim Kami"), dan <strong>Deskripsi</strong> sebagai kalimat pelengkap sambutan halaman Kontak.</p>
+            <img src="images/doc_opt_kontak_1.png" alt="Pengaturan Hero Banner Kontak" class="doc-img">
+
+            <h4 id="kontak-info">B. Informasi Kontak (Kartu Kiri)</h4>
+            <p>Menata daftar rute maupun kotak nomor pelayanan. Anda dapat menyusun judul kartu ("Informasi Kontak"), dan sub-deskripsinya. Di bawahnya terdapat <strong>Repeater Poin Kontak</strong> yang bisa ditambah berkali-kali menggunakan tombol biru <code>+ Tambah Poin</code>.</p>
+            <ul>
+                <li><strong>Ikon:</strong> Pilih ikon bawaan sistem seperti "Lokasi/Peta" atau "WhatsApp".</li>
+                <li><strong>Label Judul:</strong> Jenis kontak apa ini? (Contoh: "Alamat", "Reservasi").</li>
+                <li><strong>Isi / Nilai:</strong> Value dari informasinya (Format tulisan bebas/alamat jalan/kombinasi nomor).</li>
+            </ul>
+            <p><em>*Catatan: Tombol Sosial Media di kartu panel kiri akan diambil otomatis dari pengaturan <strong>Tab Global &rarr; Sosial Media</strong>. Anda tidak perlu menduplikat pengaturannya di sini.</em></p>
+            <img src="images/doc_opt_kontak_2.png" alt="Pengaturan Informasi Kontak Kartu Kiri" class="doc-img">
+
+            <h4 id="kontak-form">C. Form Pesan &rarr; Direct ke WhatsApp (Kartu Kanan)</h4>
+            <p>Di sebelah kanan halaman, terdapat fitur Form Pertanyaan pintar. Saat pengunjung menekan tombol *Kirim*, website otomatis mengemas isian pesannya melempar ke aplikasi WhatsApp Admin. Terdapat fitur Dropdown Pilihan Opsi Topik, misal:</p>
+            <ul>
+                <li><strong>Nomor WA Tujuan:</strong> Wajib diisi (Format pakai "62" atau "08"). Ini adalah nomor Customer Service penerima form dari website.</li>
+                <li><strong>Template Pesan WA:</strong> Tulislah format baku (contoh: Halo Admin! ...). Gunakan *placeholder* tag khusus: <code>{nama}</code> untuk nama depan pengunjung, <code>{topik}</code> untuk *Dropdown* yang mereka pilih, dan <code>{pesan}</code> untuk tambahan rincian pesannya.</li>
+                <li><strong>Opsi Pilihan (Dropdown di Form):</strong> Buat opsi yang siap dipilih oleh pelanggan lewat tombol Repeater Biru. Misal "Booking Paket", "Booking Rombongan", dsb.</li>
+            </ul>
+            <img src="images/doc_opt_kontak_3.png" alt="Pengaturan Form Pesan Direct Ke WhatsApp" class="doc-img">
+
+            <h4 id="kontak-maps">D. Peta Lokasi (Maps)</h4>
+            <p>Paling bawah halaman kotak. Atur kolom *Badge Label*, *Headline*, Deskripsi ajakan jalan. Bagian terpenting adalah menyalin alamat <em>iframe Google Maps Embed</em> di kolom <strong>URL Embed Maps</strong>.</p>
+            <p style="color:var(--danger); font-weight:bold;">Perhatian Penting: Anda hanya diizinkan mengambil "Teks URL panjang di dalam attribute src=..." pada kode Iframe Google! Jangan *paste* blok Iframe-nya bulat-bulat.</p>
+            <img src="images/doc_opt_kontak_4.png" alt="Pengaturan Peta Lokasi Maps Embed" class="doc-img">
+
+            <div style="background-color: var(--light); padding: 20px; border-radius: 8px; margin-top: 25px; margin-bottom: 20px; border-left: 4px solid var(--primary);">
+                <h5 style="margin-top: 0; font-size: 1.1rem;"><i class="ph-fill ph-map-pin-line"></i> Panduan Ekstra: Cara Mendapatkan URL Embed Google Maps</h5>
+                <ol style="margin-top: 10px; margin-bottom: 0px;">
+                    <li>Buka laman <a href="https://maps.google.com" target="_blank" style="color: var(--primary); font-weight: 600;">Google Maps</a> dari Browser dan cari lokasi bisnis Anda.</li>
+                    <li>Pada panel kiri yang muncul, tekan ikon/tombol <strong>Bagikan (Share)</strong>.</li>
+                </ol>
+                <img src="images/doc_cara_maps_1.png" alt="Cara Share Iframe Maps 1" class="doc-img" style="max-width: 450px; margin-top: 15px; border-radius: 6px;">
+                <ol start="3" style="margin-top: 15px; margin-bottom: 0px;">
+                    <li>Dari *pop-up* Bagikan yang muncul, klik tab menu <strong>Sematkan Peta (Embed a map)</strong>.</li>
+                    <li>Anda akan melihat form kode panjang berawalan <code>&lt;iframe src="https://www.google.com/..."&gt;</code>.</li>
+                    <li>Pilih dan <em>Copy</em> (Ctrl+C) spesifik <strong>hanya isi dari teks url panjang yang diapit tanda kutip <code>src="..."</code>-nya</strong> saja! Atau, Anda bisa mencetak teksnya di Notepad/Word dulu, baru ambil bagian *link url* nya saja.</li>
+                </ol>
+                <img src="images/doc_cara_maps_2.png" alt="Cara Share Iframe Maps 2" class="doc-img" style="max-width: 550px; margin-top: 15px; border-radius: 6px;">
+                <p style="margin-top: 15px; margin-bottom: 0; font-size: 0.95rem;">Terakhir, <em>Paste</em> (Ctrl+V) tautan tersebut ke dalam kolom <strong>URL Embed Maps</strong> di pengaturan Theme Options Kontak website Anda.</p>
+            </div>
+        </section>
+
+        <!-- SECTION: CPT PAKET -->
+        <section id="cpt-paket">
+            <h2><i class="ph-fill ph-ticket"></i> Mengelola Data Paket Wisata (CPT)</h2>
+            <p>Berbeda dengan teks header halamannya yang diatur di <a href="#opt-paket" class="scroll-link"><i class="ph-bold ph-link"></i> Theme Options Paket Wisata</a>, <strong>isi/daftar tiket paketnya</strong> (seperti Sewa Resort, Masuk Perorangan, dll) harus diinput satu per satu melalui menu CPT (Custom Post Type) khusus.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-info" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Lokasi Menu CPT Paket</strong><br>
+                    Anda dapat menemukan dan mengelola seluruh tiket/paket di navigasi panel kiri WordPress pada menu: <strong>Taman Herbal > Paket Wisata</strong>.
+                </div>
+            </div>
+
+            <h3>Cara Input Informasi Paket yang Benar</h3>
+            <p>Di sidebar admin WordPress, pilih menu <strong>Taman Herbal > Paket > Tambah Baru</strong>. Pertama, isi Judul Paket di bagian paling atas. Kemudian *scroll* ke bawah untuk mengisi form data paket (Metabox) dan atribut di sisi kanannya.</p>
+
+            <h4>1. Pengelompokkan Tab (Kategori Paket) & Atribut Pos</h4>
+            <p>Penting untuk struktur kartu dan tatanan kelompok di depan halaman.</p>
+            <ul>
+                <li><strong>Judul Atas (Tambahkan Judul):</strong> Nama wajib paket wisata Anda (contoh: "Tiket Masuk Perorangan"). Akan menjadi identitas utama kartu saat diklik/Share.</li>
+                <li><strong>Kategori / Nama Tab:</strong> Ketikkan Kategori (misal "Sewa Resort"), atau klik tombol pintasan layar. Paket dengan kategori yang sama akan tergabung ke dalam 1 Tab yang sama di depan.</li>
+                <li><strong>Ikon Tab:</strong> Sesuai nama ikon (misal <code>ph-users</code>). Cukup klik tombol pintasan list Ikon atau klik (Cari Ikon) untuk ikon Phosphor lain.</li>
+                <li><strong>Gaya Desain Kartu:</strong> Pilih dari total 3 variasi desain yang disediakan (Contoh: "Standard", "Gambar Kiri Menyatu", dsb.) sesuai kebutuhan konten promosinya.</li>
+                <li><strong>Atribut Pos (Kanan Layar):</strong> Pada panel samping kanan terdapat kotak <em>Atribut Pos > Urutan</em>. Isi dengan angka (contoh 0, 1, 2) untuk menentukan urutan kartu paket di dalam satu Tab. Angka terkecil tampil paling pertama.</li>
+            </ul>
+            <img src="images/doc_cpt_paket_1_final.png" alt="Pengelompokkan Tab Kategori Paket" class="doc-img">
+
+            <h4>2. Detail Identitas Kartu</h4>
+            <p>Mengatur variabel teks dan angka seperti tag label, harga, dan satuan pada kartu. <strong>Gambar Unggulan (Featured Image)</strong> di-setel dari sidebar kanan bawah WordPress (Ukuran wajib 1200x800px).</p>
+            <ul>
+                <li><strong>Label/Badge Paket:</strong> Muncul kecil di pojok kiri atas (Mendukung pintasan <em>Promo</em> yang otomatis dikonversi jadi stiker kuning).</li>
+                <li><strong>Info Tambahan:</strong> Biasa diisi "Minimal 30 Orang" (Tampil di bawah Judul tiket).</li>
+                <li><strong>Harga Dasar:</strong> HARUS isikan <strong>Angka Saja</strong> (contoh: 350000). Titik desimal otomatis diformat.</li>
+                <li><strong>Satuan Waktu/Orang:</strong> Label sufiks di sebelah harga (contoh: / Orang, / Malam).</li>
+            </ul>
+            <img src="images/doc_cpt_paket_2.png" alt="Detail Identitas Kartu" class="doc-img">
+
+            <h4>3. Fasilitas Kiri</h4>
+            <p>Sebelah kiri biasanya memuat daftar detail fasilitas apa saja yang sudah *include/termasuk* ke dalam harga tiket.</p>
+            <ul>
+                <li><strong>Judul Kolom Kiri:</strong> (Default = "Fasilitas:").</li>
+                <li><strong>Daftar Fasilitas:</strong> Tekan "Enter" pada setiap poin baru. Daftar di sini akan otomatis berubah jadi ber-ikon centang hijau di halaman depan.</li>
+                <li><strong>HTML Ekstra:</strong> Teks opsional menggunakan panduan gaya HTML tambahan.</li>
+            </ul>
+            <img src="images/doc_cpt_paket_3.png" alt="Pengaturan Fasilitas Kiri" class="doc-img">
+
+            <h4>4. Fasilitas Kanan & Tombol Aksi</h4>
+            <p>Sedangkan sebelah kanan memuat pengaturan ekstra gaya kolom dan juga URL aksi ke reservasi.</p>
+            <ul>
+                <li><strong>Gaya Kolom Kanan:</strong> Anda bisa merubah gayanya jadi "Check-List Biasa", "Kotak Pesan" (Untuk memberi *Warning Info* kotak), dll.</li>
+                <li><strong>Judul & Konten Kanan:</strong> Judul opsional bisa diisi "Catatan:" dsb. Tekan enter per barisnya.</li>
+                <li><strong>Teks Tombol Aksi:</strong> Tombol hijau di paling bawah desain kartu. Biarkan kosong untuk label *default*.</li>
+                <li><strong>Link URL Tombol (Penting):</strong> Mendukung otomatisasi *Smart Icon* berdasarkan isi URL-nya (3 kondisi)!
+                    <ol style="margin: 10px 0 10px 15px;">
+                        <li><strong>Dikosongkan:</strong> Otomatis mengarah ke halaman <code>/kontak</code> website Anda dan memunculkan Ikon Kontak pada tombol.</li>
+                        <li><strong>Diisi link <code>wa.me/..</code>:</strong> Otomatis mendeteksi nomor WhatsApp dan memunculkan Ikon logo WhatsApp.</li>
+                        <li><strong>Diisi link URL eksternal lainnya:</strong> Otomatis memunculkan logo Ikon Tautan URL generik.</li>
+                    </ol>
+                </li>
+            </ul>
+            <img src="images/doc_cpt_paket_4_final.png" alt="Pengaturan Fasilitas Kanan dan CTA" class="doc-img">
+
+            <h3>Atribut: Mengubah Urutan Paket (Sorting)</h3>
+            <p>Jika posisi urutan paket wisata kurang pas, Anda dapat mengelolanya dari halaman daftar semua paket:</p>
+            <ol>
+                <li>Buka menu daftar WordPress: <strong>Taman Herbal > Paket</strong>.</li>
+                <li>Arahkan kursor mouse ke judul paket yang ingin diubah posisinya, klik tulisan <strong>Edit Cepat (Quick Edit)</strong>.</li>
+                <li>Di sebelah kanan, ubah angka pada kolom <strong>Urutan (Order)</strong>. Pada contoh di bawah, Paket nomor '1' atau '2' otomatis mendahului paket nomor '8' dsb. Klik tombol Perbarui (Update).</li>
+                <li>Dari tabel list yang muncul, Anda juga bisa mengklik nama Kolom Tabel "Kategori Tab" atau "Urutan" untuk melalukan <em>Group Sorting</em> warna tab layaknya di Microsoft Excel.</li>
+            </ol>
+            <img src="images/doc_cpt_paket_sort.png" alt="Tabel Urutan Sorting Paket CPT" class="doc-img">
+        </section>
+
+        <!-- SECTION: CPT KATALOG -->
+        <section id="cpt-katalog">
+            <h2><i class="ph-fill ph-plant"></i> Mengelola Katalog Herbal (CPT)</h2>
+            <p>Berbeda dengan teks header halamannya yang diatur di <a href="#opt-katalog" class="scroll-link"><i class="ph-bold ph-link"></i> Theme Options Katalog</a>, daftar koleksi tanaman dikelola melalui menu CPT khusus.</p>
+            
+            <div class="alert alert-info">
+                <i class="ph-fill ph-info" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Lokasi Menu CPT Katalog Tanaman</strong><br>
+                    Untuk menambah daftar Tumbuhan/Herbal, silakan buka menu list navigasi di kiri layar WordPress: <strong>Katalog Tanaman</strong>. Klik menu <strong>Katalog Tanaman > Tambah Baru</strong>.
+                </div>
+            </div>
+
+            <h3>Cara Input Koleksi Tanaman</h3>
+
+            <h4>1. Judul, Konten Editor, dan Gambar Andalan</h4>
+            <ul>
+                <li><strong>Judul Atas (Tambahkan judul):</strong> Isi nama umum Tanaman (Contoh: "Jahe Merah", "Brotowali").</li>
+                <li><strong>Editor Deskripsi (Tengah Kotak Besar):</strong> Ceritakan sejarah, ciri fisik, atau klasifikasi umumnya panjang lebar. Anda dapat menggunakan styling *Heading* atau list sesuai kebutuhan.</li>
+                <li><strong>Gambar andalan (Kanan Bawah):</strong> Klik *Tetapkan gambar unggulan* (Thumbnail) untuk memilih foto utama yang tampil di kartu Web Katalog.</li>
+            </ul>
+            <img src="images/doc_cpt_katalog_1.png" alt="Tambah Koleksi Tanaman Katalog" class="doc-img">
+
+            <h4>2. Informasi Ekstra Tanaman</h4>
+            <p>Meta box "Informasi Ekstra Tanaman" berfungsi mengelola variabel di dalam Kartu Grid (*Bento Layout*) yang nampak di depan halaman.</p>
+            <ul>
+                <li><strong>Kategori / Badge:</strong> Muncul sebagai tag kecil di atas judul kartu grid katalog (Misal: "Terna", "Rimpang", "Daun").</li>
+                <li><strong>Nama Latin Tanaman:</strong> Penamaan latin saintik, misal: "Zingiber officinale var. rubrum".</li>
+                <li><strong>Waktu Baca (Menit):</strong> Estimasi durasi baca dalam format <strong>Angka Saja</strong> (Contoh: "2" atau "4").</li>
+                <li><strong>Daftar Poin Khasiat / Manfaat:</strong> Poin yang akan tayang dengan ikon *Check* berurutan dari atas ke bawah. Tersedia 3 slot kolom (*Poin Khasiat 1 - 3*). Sebaiknya Anda mengisi ketiganya secara merata agar seluruh ukuran kartu Katalog terlihat proporsional memanjang ke bawah.</li>
+            </ul>
+            <img src="images/doc_cpt_katalog_2.png" alt="Cara Mengisi Meta Box Informasi Ekstra Tanaman" class="doc-img">
+        </section>
+
+        <!-- SECTION: CPT GALERI -->
+        <section id="cpt-galeri">
+            <h2><i class="ph-fill ph-images"></i> Mengelola Tab Galeri Foto (CPT)</h2>
+            <p>Menu ini digunakan untuk membuat grup kategori Tab beserta kumpulan daftar foto Grid di dalamnya. Grid otomatis tersambung ke <a href="#galeri-konten" class="scroll-link"><i class="ph-bold ph-link"></i> Halaman Galeri</a>. Diakses melalui navigasi kiri WordPress <strong>Taman Herbal > Galeri</strong>.</p>
+            
+            <h3>Cara Konfigurasi (Input Foto)</h3>
+            <p>Berbeda dengan CPT lain, sistem Galeri cukup unik. <strong>Setiap 1 (Satu) Pos / Artikel Galeri</strong> yang Anda buat akan diterjemahkan menjadi <strong>1 (Satu) Kategori Tab</strong> interaktif di halaman depan pengujung.</p>
+            
+            <ol>
+                <li><strong>Judul Atas (Tambahkan Judul):</strong> Teks ini akan menjadi identitas nama "Tombol Switch/Navigasi Filter" di atas Grid Gambar Galeri (Contoh: ketik "Keseruan Outbound").</li>
+                <li><strong>List Daftar Foto dalam Tab Ini:</strong> Kotak *Metabox* besar di tengah ini adalah tempat mengunggah rentetan album fotonya. Tekan tombol panjang <strong>"+ Tambah Foto Baru"</strong> yang ada di bawah untuk menambah kolom *Repeater*. Setiap kotaknya minta diisi:
+                    <ul>
+                        <li><strong>Pilih Gambar:</strong> Tombol biru untuk mengambil/mencari foto dari Media Library WordPress Anda.</li>
+                        <li><strong>Judul Foto:</strong> Teks keterangan yang akan muncul besar (dengan kotak kuning) saat pengunjung meng-klik / memperbesar gambar.</li>
+                        <li><strong>Deskripsi Singkat:</strong> Teks panjang (paragraf) untuk menerangkan kegiatan foto tersebut, letaknya ada di bawah judul saat mode *Zoom/Lightbox*.</li>
+                    </ul>
+                </li>
+                <li><strong>Pengaturan Ikon Tab (Sisi Kanan):</strong> Panel kanan atas, yaitu kolom "Class Icon Phosphor". Berfungsi memunculkan lambang/ikon sebelum teks Tab kategorinya (contoh: <code>ph-image</code>, <code>ph-users-three</code>). Kosongkan jika tidak mau pakai Ikon.</li>
+            </ol>
+            
+            <img src="images/doc_cpt_galeri.png" alt="Pengaturan CPT Tambah Tab Galeri Baru" class="doc-img">
+        </section>
+
+        <footer style="margin-top: 50px; text-align: center; border-top: 1px solid var(--border); padding-top: 20px; color: var(--gray); font-size: 0.9rem;">
+            &copy; 2026 Panduan Penggunaan Herbal Core. Dirancang oleh Kang Jessy.
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scroll for sidebar and inline text links
+        document.querySelectorAll('.nav-link, .scroll-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle Main Section
+        function toggleSection(el) {
+            const list = el.nextElementSibling;
+            const icon = el.querySelector('.transition-icon');
+            list.classList.toggle('collapsed');
+            icon.classList.toggle('icon-rotate');
+        }
+
+        // Toggle Submenu list
+        function toggleSubmenu(el) {
+            const list = el.parentElement.querySelector('.sub-list');
+            list.classList.toggle('collapsed');
+            el.classList.toggle('icon-rotate');
+        }
+    </script>
+</body>
+</html>
