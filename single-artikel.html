@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edukasi Herbal Nusantara - Taman Wisata Herbal Insani</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+      /* Styling Khusus Halaman Artikel / Single Post */
+      .article-header {
+        padding-top: 120px;
+        padding-bottom: 60px;
+        background: var(--light);
+        text-align: center;
+      }
+
+      .article-meta {
+        font-size: 0.95rem;
+        color: var(--gray);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .article-meta span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .article-title {
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.2;
+        margin-bottom: 30px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .article-featured-img {
+        max-width: 1000px;
+        margin: -40px auto 60px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 10;
+      }
+
+      .article-featured-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+
+      .article-container {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+      }
+
+      @media (max-width: 992px) {
+        .article-container {
+          grid-template-columns: 1fr;
+        }
+        .article-title {
+          font-size: 2.2rem;
+        }
+      }
+
+      .article-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4b5563;
+      }
+
+      .article-content h2, .article-content h3 {
+        color: var(--dark);
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      .article-content h2 {
+        font-size: 2rem;
+      }
+
+      .article-content h3 {
+        font-size: 1.5rem;
+      }
+
+      .article-content p {
+        margin-bottom: 20px;
+      }
+
+      .article-content ul, .article-content ol {
+        margin-bottom: 20px;
+        padding-left: 20px;
+      }
+
+      .article-content li {
+        margin-bottom: 10px;
+      }
+
+      .article-content img {
+        width: 100%;
+        border-radius: 12px;
+        margin: 30px 0;
+      }
+
+      .article-content blockquote {
+        border-left: 4px solid var(--primary);
+        background: var(--light);
+        padding: 20px 30px;
+        border-radius: 0 12px 12px 0;
+        font-size: 1.2rem;
+        font-style: italic;
+        margin: 40px 0;
+        color: var(--dark);
+      }
+
+      /* Sidebar */
+      .article-sidebar .sidebar-widget {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .widget-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--light);
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .widget-title i {
+        color: var(--primary);
+      }
+
+      .related-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .related-list li {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .related-list li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .related-item {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s;
+      }
+
+      .related-item:hover {
+        transform: translateX(5px);
+      }
+
+      .related-img {
+        width: 80px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .related-content h4 {
+        font-size: 1rem;
+        color: var(--dark);
+        margin: 0 0 5px 0;
+        line-height: 1.3;
+        transition: color 0.2s;
+      }
+
+      .related-item:hover .related-content h4 {
+        color: var(--primary);
+      }
+
+      .related-content span {
+        font-size: 0.8rem;
+        color: var(--gray);
+      }
+
+      .share-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn-share {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--light);
+        color: var(--dark);
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.2s;
+      }
+
+      .btn-share:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" style="background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div class="container nav-content">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <img src="images/logo_baru_tr.png" alt="Taman Herbal Insani Logo" style="filter:none;">
+                    <span style="color:var(--dark); font-weight:700; font-size:1.2rem; margin-left:10px;">Herbal Insani</span>
+                </a>
+                <button class="mobile-toggle" aria-label="Toggle Menu" style="color:var(--dark);">
+                    <i class="ph-bold ph-list"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" style="color:var(--dark);">Beranda</a></li>
+                <li><a href="tentang.html" style="color:var(--dark);">Tentang Kami</a></li>
+                <li><a href="paket.html" style="color:var(--dark);">Paket</a></li>
+                <li><a href="katalog.html" style="color:var(--dark);">Katalog Herbal</a></li>
+                <li><a href="galeri.html" style="color:var(--dark);">Galeri</a></li>
+                <li><a href="kontak.html" style="color:var(--dark);">Lokasi & Kontak</a></li>
+            </ul>
+            <a href="kontak.html" class="btn-primary">Pesan Tiket</a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container">
+            <div class="article-meta">
+                <span class="badge" style="margin-bottom:0;">Edukasi & Wahana</span>
+                <span><i class="ph ph-calendar-blank"></i> 1 Maret 2026</span>
+                <span><i class="ph ph-clock"></i> 4 Menit Baca</span>
+            </div>
+            <h1 class="article-title">Edukasi Herbal Nusantara: Menanam, Merawat, dan Memahami Khasiat Alam</h1>
+        </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="container">
+        <div class="article-featured-img">
+            <img src="images/activity_herbal.png" alt="Edukasi Herbal Nusantara">
+        </div>
+    </div>
+
+    <!-- Article Content & Sidebar -->
+    <div class="article-container">
+        <!-- Main Content -->
+        <article class="article-content">
+            <p><strong>Taman Wisata Herbal Insani</strong> tidak hanya menawarkan tempat rekreasi yang menyenangkan bagi keluarga, tetapi juga menjadi sarana edukasi yang interaktif. Salah satu sorotan utama kami adalah program <strong>Edukasi Herbal Nusantara</strong>, sebuah pengalaman mendalam untuk memahami kekayaan alam Indonesia.</p>
+
+            <p>Di era modern saat ini, pengetahuan tentang obat-obatan alami tradisional mulai terpinggirkan. Namun, khasiat dari tanaman herbal tidak pernah usang oleh waktu. Melalui program ini, kami mengajak pengunjung dari segala usia, khususnya anak-anak, untuk kembali dekat dengan alam dan mengenali "apotek hidup" di sekitar kita.</p>
+
+            <h2>Apa Saja yang Akan Dipelajari?</h2>
+            <p>Program edukasi herbal dirancang agar menyenangkan dan mudah dipahami. Beberapa materi yang kami kemas secara praktik langsung meliputi:</p>
+
+            <ul>
+                <li><strong>Pengenalan Jenis Tanaman Dasar:</strong> Membedakan jahe, kunyit, lengkuas, temulawak, dan sereh langsung dari bentuk fisik dan aromanya.</li>
+                <li><strong>Praktik Menanam yang Benar:</strong> Belajar tentang komposisi tanah yang baik, kedalaman tanam, dan teknik menyiram agar tanaman herbal subur.</li>
+                <li><strong>Cara Memanen dan Mengolah:</strong> Mengetahui kapan waktu terbaik memanen dan cara sederhananya diseduh menjadi minuman berkhasiat.</li>
+            </ul>
+
+            <blockquote>
+                "Kesehatan keluarga bisa dimulai dari pekarangan rumah. Mengenalkan tanaman herbal sejak dini berarti membekali generasi dengan pertahanan alami."
+                <footer style="margin-top: 10px; font-size: 1rem; color: var(--gray); font-style: normal;">— Tim Ahli Konservasi Herbal Insani</footer>
+            </blockquote>
+
+            <h2>Manfaat Mengikuti Edukasi Ini</h2>
+            <p>Aktivitas ini bukan sekadar mendengar penjelasan, tetapi praktik langsung yang merangsang motorik dan memori. Peserta diajak untuk berinteraksi dengan tanah, menyentuh dedaunan, dan mencium aroma khas rempah. Pengalaman sensorik ini sangat krusial dalam masa perkembangan anak.</p>
+
+            <p>Bagi orang dewasa, ini adalah ajang *refreshing* sekaligus mendapat wawasan baru untuk diterapkan dalam merawat kesehatan keluarga di rumah. Setiap akhir sesi, peserta dapat mencoba racikan minuman herbal segar segar secara gratis!</p>
+
+            <img src="images/hero_bg.png" alt="Suasana taman bermain herbal">
+
+            <p>Jangan lewatkan kesempatan liburan yang tak hanya membawa kegembiraan, tapi juga ilmu yang bermanfaat untuk keseharian. Kami mengundang seluruh institusi sekolah dan komunitas keluarga untuk mencoba aktivitas spesifik ini!</p>
+
+            <!-- Tags -->
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; display:flex; gap:10px; align-items:center;">
+                <strong>Tag:</strong>
+                <a href="#" class="badge" style="background:#f3f4f6; color:#4b5563; margin:0; padding:6px 12px;">Edukasi</a>
+                <a href="#" class="badge" style="background:#f3f4f6; color:#4b5563; margin:0; padding:6px 12px;">Tanaman Obat</a>
+                <a href="#" class="badge" style="background:#f3f4f6; color:#4b5563; margin:0; padding:6px 12px;">Keluarga</a>
+            </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+            <!-- Share Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title"><i class="ph-fill ph-share-network"></i> Bagikan Artikel</h3>
+                <div class="share-buttons">
+                    <a href="#" class="btn-share" aria-label="Share ke WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i></a>
+                    <a href="#" class="btn-share" aria-label="Share ke Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                    <a href="#" class="btn-share" aria-label="Share link"><i class="ph-fill ph-link"></i></a>
+                </div>
+            </div>
+
+            <!-- Related Articles -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title"><i class="ph-fill ph-cards"></i> Aktivitas Lainnya</h3>
+                <ul class="related-list">
+                    <li>
+                        <a href="#" class="related-item">
+                            <img src="images/activity_archery.png" alt="Panahan" class="related-img">
+                            <div class="related-content">
+                                <h4>Arena Panahan Keluarga: Latih Fokus!</h4>
+                                <span><i class="ph ph-clock"></i> 2 Menit Baca</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="related-item">
+                            <img src="images/hero_bg.png" alt="Renang" class="related-img">
+                            <div class="related-content">
+                                <h4>Serunya Wahana Taman Bermain Terbuka</h4>
+                                <span><i class="ph ph-clock"></i> 3 Menit Baca</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Promo Widget -->
+            <div class="sidebar-widget" style="background: var(--primary); color: white; border: none; text-align: center;">
+                <h3 style="color: white; font-size: 1.4rem; margin-bottom: 15px;">Promo Spesial Rombongan</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9;">Daftarkan sekolah/komunitas Anda untuk program Edukasi Herbal Terpadu.</p>
+                <a href="kontak.html" class="btn-secondary" style="width: 100%; justify-content: center; background: white; color: var(--primary);">Hubungi Kami</a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer (Sama dengan halaman index) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo text-white">
+                        <i class="ph-fill ph-leaf"></i> Herbal Insani
+                    </a>
+                    <p style="opacity: 0.8; margin-top: 24px;">Taman wisata edutainment terkemuka yang memadukan keindahan alam dengan edukasi herbal untuk keluarga dan anak-anak.</p>
+                    <div class="social-links" style="margin-top: 24px;">
+                        <a href="#" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="#" target="_blank"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="#" target="_blank"><i class="ph-fill ph-youtube-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Jelajahi</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="paket.html">Pilihan Paket</a></li>
+                        <li><a href="katalog.html">Katalog Herbal</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <ul class="contact-list">
+                        <li><i class="ph-fill ph-map-pin"></i> <span>Jl. Rawakalong, Pengasinan, Kec. Sawangan, Kota Depok, Jawa Barat.</span></li>
+                        <li><i class="ph-fill ph-envelope-simple"></i> <span>info@herbalinsani.com</span></li>
+                        <li><i class="ph-fill ph-phone"></i> <span>0821-2544-4577 (WA)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Taman Wisata Herbal Insani. All rights reserved. Redesigned with ❤️.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Make navbar background visible immediately for single post page
+        document.querySelector('.navbar').classList.add('scrolled');
+    </script>
+  </body>
+</html>
